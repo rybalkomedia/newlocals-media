@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Америка глазами иммигрантов — анкета героя</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #191a19;
+      --surface: #ffffff;
+      --text: #171816;
+      --muted: #666861;
+      --line: #d8d8d2;
+      --accent: #e6b970;
+      --accent-soft: #f7eedc;
+      --error: #b42318;
+      --success: #137333;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      position: relative;
+      margin: 0;
+      background: var(--background);
+      color: #f5f5f2;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      filter: blur(110px);
+      pointer-events: none;
+      opacity: .24;
+    }
+
+    body::before {
+      top: -240px;
+      right: -180px;
+      background: #b88b51;
+    }
+
+    body::after {
+      bottom: -300px;
+      left: -240px;
+      background: #6f5735;
+    }
+
+    main {
+      width: min(1040px, calc(100% - 32px));
+      margin: 48px auto 80px;
+    }
+
+    header {
+      max-width: none;
+      padding: 12px 0 10px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .brand-logo {
+      display: block;
+      width: min(480px, 88%);
+      height: auto;
+      margin: 0 auto 4px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #efc985;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 800px;
+      color: #f7f7f4;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #b5b7b3;
+      font-size: 18px;
+    }
+
+    .intro-actions { margin-top: 22px; }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #171816;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 30px 0;
+    }
+
+    .overview-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .07);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 18px 50px rgba(0, 0, 0, .18);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .overview-card h2 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      letter-spacing: -.01em;
+    }
+
+    .overview-card p {
+      margin: 0;
+      color: #afb1ad;
+    }
+
+    .process-note {
+      margin: 0 0 30px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      background: rgba(255, 255, 255, .07);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .process-note strong { display: block; margin-bottom: 4px; }
+
+    .process-note p { margin: 0; color: #b5b7b3; }
+
+    .episodes {
+      padding: 40px 0 36px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      margin: 0 0 8px;
+      color: #efc985;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .episodes h2 {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+    }
+
+    .episode-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .episode-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 0;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .07);
+      color: #f5f5f2;
+      font: inherit;
+      text-align: left;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform .18s, border-color .18s, background .18s;
+    }
+
+    .episode-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(230, 185, 112, .72);
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .episode-cover {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      padding: 16px;
+      isolation: isolate;
+    }
+
+    .episode-cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 75% 28%, rgba(230, 185, 112, .72), transparent 26%),
+        linear-gradient(135deg, #454749, #1b1d1e 55%, #6d5835);
+    }
+
+    .episode-two::before {
+      background:
+        radial-gradient(circle at 28% 25%, rgba(239, 201, 133, .66), transparent 24%),
+        linear-gradient(155deg, #1b1d1e, #55585a 58%, #463b29);
+    }
+
+    .episode-three::before {
+      background:
+        radial-gradient(circle at 68% 68%, rgba(230, 185, 112, .7), transparent 23%),
+        linear-gradient(120deg, #626466, #1d1f20 52%, #625034);
+    }
+
+    .episode-cover::after {
+      content: "";
+      position: absolute;
+      inset: 45% 0 0;
+      z-index: -1;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .72));
+    }
+
+    .episode-thumbnail {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .episode-one .episode-thumbnail {
+      object-position: center top;
+    }
+
+    .play {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #171816;
+      font-size: 13px;
+    }
+
+    .episode-copy { padding: 17px; }
+
+    .episode-card h3 {
+      margin: 0 0 6px;
+      font-size: 19px;
+      line-height: 1.15;
+    }
+
+    .episode-card p {
+      margin: 0;
+      color: #aaaca8;
+      font-size: 14px;
+    }
+
+    .channel-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      padding: 11px 18px;
+      border: 1px solid rgba(230, 185, 112, .58);
+      border-radius: 999px;
+      color: #efc985;
+      font-size: 14px;
+      font-weight: 750;
+      text-decoration: none;
+      transition: color .18s, background .18s, border-color .18s, transform .18s;
+    }
+
+    .channel-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(230, 185, 112, .1);
+      color: #fff;
+    }
+
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(7, 8, 8, .86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .video-modal[hidden] { display: none; }
+
+    .video-dialog {
+      position: relative;
+      width: min(1100px, 100%);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 18px;
+      background: #111313;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .55);
+    }
+
+    .video-frame {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 10px;
+      background: #000;
+    }
+
+    .video-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      display: grid;
+      width: 44px;
+      min-height: 44px;
+      padding: 0;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 50%;
+      background: #f5f3ee;
+      color: #171816;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .form-heading {
+      max-width: 720px;
+      margin: 44px auto 18px;
+      text-align: center;
+    }
+
+    .form-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -.035em;
+    }
+
+    .form-heading p { margin: 0; color: #b5b7b3; }
+
+    form, .result {
+      width: auto;
+      max-width: 720px;
+      padding: clamp(20px, 4vw, 36px);
+      margin-right: auto;
+      margin-left: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 10px 30px rgba(23, 24, 22, .05);
+    }
+
+    .section {
+      padding: 0 0 28px;
+      margin: 0 0 28px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-of-type { margin-bottom: 20px; }
+
+    legend, .section-title {
+      width: 100%;
+      padding: 0;
+      margin: 0 0 16px;
+      font-size: 21px;
+      font-weight: 750;
+      letter-spacing: -.015em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field { margin-top: 18px; }
+    .grid .field { margin-top: 0; }
+
+    label, .label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 650;
+    }
+
+    .optional {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #b9bbb5;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    input, select { height: 48px; padding: 0 13px; }
+
+    select {
+      padding-right: 44px;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%235c5f59' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 16px;
+    }
+
+    textarea { min-height: 128px; padding: 12px 13px; resize: vertical; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(36, 72, 216, .13);
+    }
+
+    [aria-invalid="true"] {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(180, 35, 24, .1);
+    }
+
+    .hint, .counter, .error {
+      margin: 6px 0 0;
+      font-size: 13px;
+    }
+
+    .hint, .counter { color: var(--muted); }
+    .counter { text-align: right; }
+    .counter.is-near-limit { color: #9a6700; }
+    .error { min-height: 19px; color: var(--error); }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .choice {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 82px;
+      margin: 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .choice:has(input:checked) {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .choice input {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--accent);
+    }
+
+    .choice strong { display: block; }
+    .choice small { display: block; margin-top: 3px; color: var(--muted); font-weight: 400; }
+
+    .branch[hidden] { display: none; }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .consent input {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 10px;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    button[type="submit"] { background: var(--accent); color: #171816; }
+    button[type="button"] { background: #ecece7; color: var(--text); }
+    button:disabled { cursor: wait; opacity: .62; }
+
+    .honeypot {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    button.episode-card {
+      min-height: 0;
+      padding: 0;
+      background: rgba(255, 255, 255, .07);
+      color: #f5f5f2;
+      font: inherit;
+    }
+    button.episode-card:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: rgba(230, 185, 112, .72);
+    }
+    button:hover { filter: brightness(.97); }
+
+    .form-status {
+      margin: 14px 0 0;
+      font-weight: 650;
+    }
+
+    .form-status.error-status { color: var(--error); }
+
+    .result {
+      margin-top: 20px;
+      border-color: #a7d7b2;
+    }
+
+    .result[hidden] { display: none; }
+    .result h2 { margin: 0 0 8px; font-size: 24px; }
+    .result p { margin: 0 0 14px; color: var(--success); font-weight: 650; }
+
+    .site-footer {
+      max-width: 720px;
+      margin: 48px auto 0;
+      padding: 28px 0 36px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      color: #b5b7b3;
+      text-align: center;
+    }
+
+    .site-footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 22px;
+      margin-bottom: 13px;
+    }
+
+    .footer-links a {
+      color: #efc985;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .18s;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    @media (max-width: 620px) {
+      main { width: min(100% - 20px, 720px); margin-top: 24px; }
+      header { padding-top: 24px; }
+      .grid, .choice-grid, .overview, .episode-grid { grid-template-columns: 1fr; }
+      form, .result { border-radius: 14px; }
+      .video-modal { padding: 10px; }
+      .video-dialog { padding: 8px; }
+      .video-close { top: 8px; right: 8px; z-index: 2; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img class="brand-logo" src="assets/america-logo.png" alt="Америка глазами иммигрантов">
+      <p class="intro">Медиа о людях, которые живут, работают и строят своё дело в США. Мы показываем профессии, предпринимательство и реальную жизнь изнутри — через личные истории наших героев.</p>
+    </header>
+
+    <section class="episodes" aria-labelledby="episodesTitle">
+      <h2 id="episodesTitle">Герои наших выпусков</h2>
+
+      <div class="episode-grid">
+        <button class="episode-card" type="button" data-video-id="dj2gjyJxyYs" aria-label="Смотреть выпуск Один день с копом в Америке">
+          <div class="episode-cover episode-one">
+            <img class="episode-thumbnail" src="https://i.ytimg.com/vi/dj2gjyJxyYs/maxresdefault.jpg" alt="Обложка выпуска «Один день с копом в Америке»">
+            <span class="play" aria-hidden="true">▶</span>
+          </div>
+          <div class="episode-copy">
+            <h3>Один день с копом в Америке</h3>
+            <p>Как устроена работа полиции США и что остаётся за пределами обычного взгляда.</p>
+          </div>
+        </button>
+
+        <button class="episode-card" type="button" data-video-id="pGV8R9EzU_E" aria-label="Смотреть выпуск Как простой работяга делает 5000 долларов в день">
+          <div class="episode-cover episode-two">
+            <img class="episode-thumbnail" src="https://i.ytimg.com/vi/pGV8R9EzU_E/maxresdefault.jpg" alt="Обложка выпуска о бизнесе с доходом 5000 долларов в день">
+            <span class="play" aria-hidden="true">▶</span>
+          </div>
+          <div class="episode-copy">
+            <h3>Как простой работяга делает $5 000 в день</h3>
+            <p>История человека, который начал с нуля и построил своё дело в США.</p>
+          </div>
+        </button>
+
+        <button class="episode-card" type="button" data-video-id="niZFxjP5GLc" aria-label="Смотреть выпуск Дальнобойщик в США">
+          <div class="episode-cover episode-three">
+            <img class="episode-thumbnail" src="https://i.ytimg.com/vi/niZFxjP5GLc/maxresdefault.jpg" alt="Обложка выпуска «Дальнобойщик в США»">
+            <span class="play" aria-hidden="true">▶</span>
+          </div>
+          <div class="episode-copy">
+            <h3>Дальнобойщик в США: $10 000 в месяц</h3>
+            <p>Работа на американских дорогах, реальные доходы и жизнь водителя изнутри.</p>
+          </div>
+        </button>
+      </div>
+
+      <a class="channel-link" href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer">Перейти на YouTube-канал&nbsp;↗</a>
+    </section>
+
+    <section class="form-heading">
+      <p class="section-kicker">Стать героем</p>
+      <h2>Расскажите о себе</h2>
+    </section>
+
+    <form id="applicationForm" novalidate>
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Не заполняйте это поле</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <fieldset class="section">
+        <legend>Основная информация</legend>
+
+        <div class="field">
+          <label for="name">Как вас зовут?</label>
+          <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
+          <p class="error" id="nameError" aria-live="polite"></p>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="state">Штат</label>
+            <select id="state" name="state" required>
+              <option value="">Выберите штат</option>
+            </select>
+            <p class="error" id="stateError" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="city">Город</label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" minlength="2" maxlength="80" required>
+            <p class="error" id="cityError" aria-live="polite"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="section" id="categorySection">
+        <legend>О чём вы хотите рассказать?</legend>
+        <div class="choice-grid">
+          <label class="choice">
+            <input type="radio" name="category" value="profession" required>
+            <span><strong>О своей профессии</strong><small>Показать работу и её внутреннюю кухню.</small></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="category" value="business" required>
+            <span><strong>О своём бизнесе</strong><small>Для основателей, готовых показать бизнес изнутри.</small></span>
+          </label>
+        </div>
+        <p class="error" id="categoryError" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset class="section branch" id="professionBranch" hidden disabled>
+        <legend>О профессии</legend>
+
+        <div class="field">
+          <label for="professionDescription">Какая у вас профессия и чем конкретно вы занимаетесь?</label>
+          <textarea id="professionDescription" name="profession_description" minlength="20" maxlength="600" required></textarea>
+          <p class="hint">Минимум 20, максимум 600 символов.</p>
+          <p class="counter" data-counter-for="professionDescription"></p>
+          <p class="error" id="professionDescriptionError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="professionFilming">Что мы сможем показать и снять в процессе вашей работы?</label>
+          <textarea id="professionFilming" name="profession_filming" minlength="30" maxlength="1200" required></textarea>
+          <p class="hint">Например: рабочий процесс, реальные задачи, оборудование, выезды или взаимодействие с людьми.</p>
+          <p class="counter" data-counter-for="professionFilming"></p>
+          <p class="error" id="professionFilmingError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="professionLink">Профессиональный профиль или публикации <span class="optional">— необязательно</span></label>
+          <input id="professionLink" name="profession_link" type="url" inputmode="url" placeholder="https://...">
+          <p class="error" id="professionLinkError" aria-live="polite"></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="section branch" id="businessBranch" hidden disabled>
+        <legend>О бизнесе</legend>
+
+        <div class="field">
+          <label for="businessName">Название бизнеса</label>
+          <input id="businessName" name="business_name" type="text" minlength="2" maxlength="120" required>
+          <p class="error" id="businessNameError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="businessDescription">Чем занимается ваш бизнес?</label>
+          <textarea id="businessDescription" name="business_description" minlength="20" maxlength="600" required></textarea>
+          <p class="hint">Минимум 20, максимум 600 символов.</p>
+          <p class="counter" data-counter-for="businessDescription"></p>
+          <p class="error" id="businessDescriptionError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="businessFilming">Что мы сможем показать и снять изнутри?</label>
+          <textarea id="businessFilming" name="business_filming" minlength="30" maxlength="1200" required></textarea>
+          <p class="hint">Например: создание продукта, работу команды, обслуживание клиентов, производство или обычный рабочий день.</p>
+          <p class="counter" data-counter-for="businessFilming"></p>
+          <p class="error" id="businessFilmingError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="businessLink">Сайт или социальные сети бизнеса</label>
+          <input id="businessLink" name="business_link" type="url" inputmode="url" placeholder="https://..." required>
+          <p class="error" id="businessLinkError" aria-live="polite"></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="section">
+        <legend>Немного о вас</legend>
+        <div class="field">
+          <label for="about">Расскажите немного о себе как о человеке</label>
+          <textarea id="about" name="about" minlength="30" maxlength="800" required></textarea>
+          <p class="hint">Чем вы живёте, что вам важно и что лучше всего вас характеризует? Минимум 30, максимум 800 символов.</p>
+          <p class="counter" data-counter-for="about"></p>
+          <p class="error" id="aboutError" aria-live="polite"></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="section" id="contactSection">
+        <legend>Контактные данные</legend>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+          <p class="error" id="emailError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">WhatsApp <span class="optional">— необязательно</span></label>
+          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+1 555 123 4567">
+          <p class="error" id="whatsappError" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="instagram">Instagram <span class="optional">— необязательно</span></label>
+          <input id="instagram" name="instagram" type="text" placeholder="@username или ссылка" maxlength="120">
+          <p class="error" id="instagramError" aria-live="polite"></p>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <span>Я согласен(-на) на обработку указанных данных и на то, чтобы команда проекта связалась со мной по поводу заявки.</span>
+        </label>
+        <p class="error" id="consentError" aria-live="polite"></p>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Отправить анкету</button>
+      </div>
+      <p class="form-status" id="formStatus" aria-live="polite"></p>
+    </form>
+
+    <section class="result" id="result" hidden>
+      <h2>Заявка отправлена</h2>
+      <p>Спасибо! Команда проекта изучит вашу историю и свяжется с вами, если она подойдёт для выпуска.</p>
+    </section>
+
+    <footer class="site-footer">
+      <nav class="footer-links" aria-label="Социальные сети проекта">
+        <a href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer">YouTube&nbsp;↗</a>
+        <a href="https://www.instagram.com/rybalko_iliya" target="_blank" rel="noopener noreferrer">Instagram&nbsp;↗</a>
+        <a href="https://t.me/Iliya_rybalko" target="_blank" rel="noopener noreferrer">Telegram&nbsp;↗</a>
+      </nav>
+      <p>Америка глазами иммигрантов — истории о жизни и бизнесе в США.</p>
+    </footer>
+  </main>
+
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Просмотр выпуска" hidden>
+    <div class="video-dialog">
+      <button class="video-close" id="videoClose" type="button" aria-label="Закрыть видео">×</button>
+      <iframe class="video-frame" id="videoFrame" title="Выпуск проекта" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbxduzIZuo9R9rUbKTGgm3sV9f0cvpAeAAOALZ4oCKBSg9ck70PLcRnEjt4ntYbaYRuX7A/exec";
+
+    const states = [
+      ["AL", "Alabama"], ["AK", "Alaska"], ["AZ", "Arizona"], ["AR", "Arkansas"],
+      ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DE", "Delaware"],
+      ["DC", "District of Columbia"], ["FL", "Florida"], ["GA", "Georgia"], ["HI", "Hawaii"],
+      ["ID", "Idaho"], ["IL", "Illinois"], ["IN", "Indiana"], ["IA", "Iowa"],
+      ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], ["ME", "Maine"],
+      ["MD", "Maryland"], ["MA", "Massachusetts"], ["MI", "Michigan"], ["MN", "Minnesota"],
+      ["MS", "Mississippi"], ["MO", "Missouri"], ["MT", "Montana"], ["NE", "Nebraska"],
+      ["NV", "Nevada"], ["NH", "New Hampshire"], ["NJ", "New Jersey"], ["NM", "New Mexico"],
+      ["NY", "New York"], ["NC", "North Carolina"], ["ND", "North Dakota"], ["OH", "Ohio"],
+      ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], ["RI", "Rhode Island"],
+      ["SC", "South Carolina"], ["SD", "South Dakota"], ["TN", "Tennessee"], ["TX", "Texas"],
+      ["UT", "Utah"], ["VT", "Vermont"], ["VA", "Virginia"], ["WA", "Washington"],
+      ["WV", "West Virginia"], ["WI", "Wisconsin"], ["WY", "Wyoming"]
+    ];
+
+    const form = document.querySelector("#applicationForm");
+    const stateSelect = document.querySelector("#state");
+    const result = document.querySelector("#result");
+    const formStatus = document.querySelector("#formStatus");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    const ATTRIBUTION_KEY = "america-eyes-attribution";
+    const ATTRIBUTION_LIFETIME = 365 * 24 * 60 * 60 * 1000;
+
+    function readAttribution() {
+      const query = new URLSearchParams(window.location.search);
+      const compactRef = (query.get("ref") || "").trim().toLowerCase();
+      const [sourceCode = "", ...campaignParts] = compactRef.split("-").filter(Boolean);
+      const sourceAliases = {
+        yt: "youtube",
+        ig: "instagram",
+        tg: "telegram",
+        fb: "facebook",
+        tt: "tiktok"
+      };
+      const source = query.get("utm_source") || sourceAliases[sourceCode] || sourceCode;
+      const medium = query.get("utm_medium") || (compactRef ? "short_link" : "");
+      const campaign = query.get("utm_campaign") || campaignParts.join("-");
+      const content = query.get("utm_content") || "";
+      const hasNewAttribution = compactRef || source || medium || campaign || content;
+
+      if (hasNewAttribution) {
+        const attribution = {
+          source,
+          medium,
+          campaign: [campaign, content].filter(Boolean).join(" · "),
+          referrer: document.referrer || "",
+          capturedAt: Date.now()
+        };
+        try {
+          localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution));
+        } catch (_) {}
+        return attribution;
+      }
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || "null");
+        if (saved && Date.now() - saved.capturedAt <= ATTRIBUTION_LIFETIME) return saved;
+        localStorage.removeItem(ATTRIBUTION_KEY);
+      } catch (_) {}
+
+      return { source: "", medium: "", campaign: "", referrer: document.referrer || "" };
+    }
+
+    const attribution = readAttribution();
+
+    const videoModal = document.querySelector("#videoModal");
+    const videoFrame = document.querySelector("#videoFrame");
+    const videoClose = document.querySelector("#videoClose");
+    let lastVideoTrigger = null;
+
+    function openVideo(button) {
+      lastVideoTrigger = button;
+      const videoId = button.dataset.videoId;
+      videoFrame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      videoModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      videoClose.focus();
+    }
+
+    function closeVideo() {
+      videoModal.hidden = true;
+      videoFrame.src = "";
+      document.body.style.overflow = "";
+      lastVideoTrigger?.focus();
+    }
+
+    for (const card of document.querySelectorAll("[data-video-id]")) {
+      card.addEventListener("click", () => openVideo(card));
+    }
+
+    videoClose.addEventListener("click", closeVideo);
+    videoModal.addEventListener("click", event => {
+      if (event.target === videoModal) closeVideo();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !videoModal.hidden) closeVideo();
+    });
+
+    for (const [code, name] of states) {
+      stateSelect.add(new Option(`${name} (${code})`, code));
+    }
+
+    const branchMap = {
+      profession: document.querySelector("#professionBranch"),
+      business: document.querySelector("#businessBranch")
+    };
+
+    function clearFieldError(field) {
+      field.removeAttribute("aria-invalid");
+      const error = document.querySelector(`#${field.id}Error`);
+      if (error) error.textContent = "";
+    }
+
+    function setFieldError(field, message) {
+      field.setAttribute("aria-invalid", "true");
+      const error = document.querySelector(`#${field.id}Error`);
+      if (error) error.textContent = message;
+    }
+
+    function setCategory(category) {
+      for (const [key, branch] of Object.entries(branchMap)) {
+        const active = key === category;
+        branch.hidden = !active;
+        branch.disabled = !active;
+        if (!active) {
+          for (const field of branch.querySelectorAll("input, textarea, select")) {
+            field.value = "";
+            clearFieldError(field);
+          }
+        }
+      }
+      document.querySelector("#categoryError").textContent = "";
+      updateCounters();
+    }
+
+    form.addEventListener("change", event => {
+      if (event.target.name === "category") setCategory(event.target.value);
+    });
+
+    function updateCounter(field) {
+      const counter = document.querySelector(`[data-counter-for="${field.id}"]`);
+      if (!counter) return;
+      const max = Number(field.maxLength);
+      counter.textContent = `${field.value.length} / ${max}`;
+      counter.classList.toggle("is-near-limit", field.value.length >= max * .85);
+    }
+
+    function updateCounters() {
+      for (const field of form.querySelectorAll("textarea[maxlength]")) updateCounter(field);
+    }
+
+    form.addEventListener("input", event => {
+      clearFieldError(event.target);
+      updateCounter(event.target);
+      formStatus.textContent = "";
+      formStatus.className = "form-status";
+      result.hidden = true;
+    });
+
+    function validateField(field) {
+      if (field.disabled || field.closest("fieldset[disabled]") || field.type === "radio" || field.type === "checkbox") return true;
+      const value = field.value.trim();
+
+      if (field.required && !value) {
+        setFieldError(field, "Заполните это поле.");
+        return false;
+      }
+
+      if (value && field.minLength > 0 && value.length < field.minLength) {
+        setFieldError(field, `Нужно не менее ${field.minLength} символов. Сейчас: ${value.length}.`);
+        return false;
+      }
+
+      if (value && field.maxLength > 0 && value.length > field.maxLength) {
+        setFieldError(field, `Можно использовать не более ${field.maxLength} символов.`);
+        return false;
+      }
+
+      if (value && field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        setFieldError(field, "Проверьте адрес электронной почты.");
+        return false;
+      }
+
+      if (value && field.type === "url") {
+        try {
+          const url = new URL(value);
+          if (!["http:", "https:"].includes(url.protocol)) throw new Error();
+        } catch {
+          setFieldError(field, "Укажите полную ссылку, начинающуюся с https://");
+          return false;
+        }
+      }
+
+      if (field.id === "whatsapp" && value) {
+        const digits = value.replace(/\D/g, "");
+        if (digits.length < 10 || digits.length > 15) {
+          setFieldError(field, "Укажите номер с кодом страны, например +1 555 123 4567.");
+          return false;
+        }
+      }
+
+      clearFieldError(field);
+      return true;
+    }
+
+    function validateForm() {
+      let valid = true;
+
+      const category = form.querySelector('input[name="category"]:checked');
+      document.querySelector("#categoryError").textContent = category ? "" : "Выберите одно направление.";
+      if (!category) valid = false;
+
+      const consent = document.querySelector("#consent");
+      document.querySelector("#consentError").textContent = consent.checked ? "" : "Подтвердите согласие, чтобы продолжить.";
+      if (!consent.checked) valid = false;
+
+      for (const field of form.querySelectorAll("input, textarea, select")) {
+        if (!validateField(field)) valid = false;
+      }
+
+      return valid;
+    }
+
+    function serializeForm() {
+      const data = {};
+      const formData = new FormData(form);
+      for (const [key, value] of formData.entries()) data[key] = typeof value === "string" ? value.trim() : value;
+      data.consent = document.querySelector("#consent").checked;
+      data.utm_source = attribution.source;
+      data.utm_medium = attribution.medium;
+      data.utm_campaign = attribution.campaign;
+      data.referrer = attribution.referrer;
+      return data;
+    }
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      result.hidden = true;
+
+      if (!validateForm()) {
+        formStatus.textContent = "Проверьте выделенные поля.";
+        formStatus.className = "form-status error-status";
+        const firstError = form.querySelector('[aria-invalid="true"]') || form.querySelector(".error:not(:empty)");
+        firstError?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = "Отправляем…";
+      formStatus.textContent = "Отправляем заявку…";
+      formStatus.className = "form-status";
+
+      try {
+        await fetch(SUBMISSION_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          credentials: "omit",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(serializeForm())
+        });
+
+        form.reset();
+        setCategory("");
+        formStatus.textContent = "";
+        result.hidden = false;
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (error) {
+        formStatus.textContent = "Не удалось отправить заявку. Проверьте интернет-соединение и попробуйте ещё раз.";
+        formStatus.className = "form-status error-status";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+
+    updateCounters();
+  </script>
+</body>
+</html>
