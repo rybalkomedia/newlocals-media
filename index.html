@@ -3,31 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Америка глазами иммигрантов — анкета героя</title>
+  <meta name="description" content="Америка глазами иммигрантов — медиа о людях, которые живут, работают и строят своё дело в США.">
+  <title>Америка глазами иммигрантов — медиа о жизни и бизнесе в США</title>
   <style>
     :root {
-      color-scheme: light;
+      color-scheme: dark;
       --background: #191a19;
-      --surface: #ffffff;
-      --text: #171816;
-      --muted: #666861;
-      --line: #d8d8d2;
+      --surface: rgba(255, 255, 255, .055);
+      --surface-strong: rgba(255, 255, 255, .085);
+      --text: #f7f7f4;
+      --muted: #b7b8b4;
       --accent: #e6b970;
-      --accent-soft: #f7eedc;
-      --error: #b42318;
-      --success: #137333;
+      --accent-soft: rgba(230, 185, 112, .12);
+      --line: rgba(255, 255, 255, .13);
+      --display: "Iowan Old Style", Baskerville, "Times New Roman", serif;
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       position: relative;
+      min-height: 100vh;
       margin: 0;
-      background: var(--background);
-      color: #f5f5f2;
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.45;
       overflow-x: hidden;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
     }
 
     body::before,
@@ -35,284 +38,660 @@
       content: "";
       position: fixed;
       z-index: -1;
-      width: 520px;
-      height: 520px;
+      width: 560px;
+      height: 560px;
       border-radius: 50%;
-      filter: blur(110px);
+      filter: blur(125px);
       pointer-events: none;
-      opacity: .24;
+      opacity: .11;
     }
 
-    body::before {
-      top: -240px;
-      right: -180px;
-      background: #b88b51;
-    }
-
-    body::after {
-      bottom: -300px;
-      left: -240px;
-      background: #6f5735;
-    }
+    body::before { top: -280px; right: -220px; background: #b88b51; }
+    body::after { bottom: -330px; left: -270px; background: #6f5735; }
 
     main {
-      width: min(1040px, calc(100% - 32px));
-      margin: 48px auto 80px;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    header {
-      max-width: none;
-      padding: 12px 0 10px;
-      margin-bottom: 8px;
-      text-align: center;
+    .hero {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 3;
+      min-height: 0;
+      padding: clamp(22px, 4vh, 38px) 0 18px;
     }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      width: min(1180px, calc(100% - 40px));
+      max-width: none;
+      align-items: center;
+      gap: 30px;
+      margin: 0 auto;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, .2);
+    }
+
+    .brand-home { display: block; justify-self: start; }
 
     .brand-logo {
       display: block;
-      width: min(480px, 88%);
+      width: clamp(185px, 19vw, 250px);
       height: auto;
-      margin: 0 auto 4px;
+      margin: 0;
+    }
+
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 2.4vw, 32px);
+    }
+
+    .hero-nav a {
+      color: rgba(255, 255, 255, .78);
+      font-size: 13px;
+      font-weight: 720;
+      text-decoration: none;
+      transition: color .18s;
+    }
+
+    .hero-nav a:hover { color: var(--accent); }
+
+    .hero-nav .nav-primary {
+      padding: 9px 14px;
+      border: 1px solid rgba(230, 185, 112, .68);
+      border-radius: 999px;
+      color: #f0c982;
+    }
+
+    .hero-socials {
+      display: flex;
+      align-items: center;
+      justify-self: end;
+      gap: 8px;
+    }
+
+    .hero-socials a {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 50%;
+      color: rgba(255, 255, 255, .74);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-decoration: none;
+      transition: color .18s, border-color .18s, background .18s, transform .18s;
+    }
+
+    .hero-socials a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(230, 185, 112, .72);
+      background: rgba(230, 185, 112, .1);
+      color: #efc985;
+    }
+
+    .hero-note {
+      margin: 72px 0 0;
+      color: #868984;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 108px 0;
+      border-top: 1px solid var(--line);
     }
 
     .eyebrow {
-      margin: 0 0 8px;
+      margin: 0 0 14px;
       color: #efc985;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: .11em;
       text-transform: uppercase;
     }
 
-    h1 {
+    h2 {
       margin: 0;
-      max-width: 800px;
-      color: #f7f7f4;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: .98;
-      letter-spacing: -.055em;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(38px, 4.8vw, 62px);
+      font-weight: 760;
+      line-height: .96;
+      letter-spacing: -.048em;
     }
 
-    .intro {
-      max-width: 760px;
-      margin: 0 auto;
-      color: #b5b7b3;
+    .section-intro {
+      max-width: 700px;
+      margin: 18px 0 0;
+      color: var(--muted);
       font-size: 18px;
     }
 
-    .intro-actions { margin-top: 22px; }
-
-    .primary-link {
+    .button {
       display: inline-flex;
+      min-height: 48px;
       align-items: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 10px;
-      background: var(--accent);
-      color: #171816;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      color: var(--text);
       font-weight: 750;
       text-decoration: none;
+      transition: transform .18s, background .18s, color .18s;
     }
 
-    .overview {
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--accent); color: #171816; }
+    .button-secondary { background: rgba(255, 255, 255, .035); color: #efc985; }
+
+    .button[aria-disabled="true"] { opacity: .65; cursor: default; }
+    .button[aria-disabled="true"]:hover { transform: none; }
+
+    .about-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 30px 0;
+      grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+      gap: clamp(48px, 8vw, 110px);
+      align-items: start;
     }
 
-    .overview-card {
-      padding: 20px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, .07);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 18px 50px rgba(0, 0, 0, .18);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+    .about-copy { color: var(--muted); font-size: clamp(17px, 1.65vw, 20px); }
+    .about-copy p { margin: 0 0 22px; }
+    .about-copy p:last-child { margin-bottom: 0; }
+
+    .manifesto {
+      padding: 28px 30px;
+      margin-top: 34px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 15px 15px 0;
+      background: linear-gradient(90deg, var(--accent-soft), rgba(255, 255, 255, .025));
+      color: #e7e3da;
     }
 
-    .overview-card h2 {
-      margin: 0 0 8px;
+    .manifesto strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
       font-size: 19px;
-      letter-spacing: -.01em;
     }
 
-    .overview-card p {
-      margin: 0;
-      color: #afb1ad;
+    .manifesto p { margin: 0; }
+
+    .story-scroll {
+      position: relative;
+      width: 100vw;
+      height: 420vh;
+      margin-left: calc(50% - 50vw);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .process-note {
-      margin: 0 0 30px;
-      padding: 18px 20px;
-      border-left: 4px solid var(--accent);
-      border-radius: 0 10px 10px 0;
-      background: rgba(255, 255, 255, .07);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+    .story-stage {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100svh;
+      min-height: 620px;
+      overflow: hidden;
+      background: #101110;
     }
 
-    .process-note strong { display: block; margin-bottom: 4px; }
-
-    .process-note p { margin: 0; color: #b5b7b3; }
-
-    .episodes {
-      padding: 40px 0 36px;
-      text-align: center;
+    .story-visual {
+      position: relative;
+      flex: 1 1 100%;
+      min-height: 0;
+      overflow: hidden;
     }
 
-    .section-kicker {
-      margin: 0 0 8px;
-      color: #efc985;
+    .story-backgrounds,
+    .story-background,
+    .story-shade {
+      position: absolute;
+      inset: 0;
+    }
+
+    .story-background {
+      background-position: center;
+      background-size: cover;
+      opacity: 0;
+      transform: scale(1.045);
+      transition: opacity .65s ease, transform 1.1s ease;
+    }
+
+    .story-background.is-active { opacity: 1; transform: scale(1); }
+
+    .story-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: #101110;
+    }
+
+    .story-video[hidden] { display: none; }
+
+    .story-shade {
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(13, 14, 13, .96) 0%, rgba(13, 14, 13, .78) 34%, rgba(13, 14, 13, .16) 76%),
+        linear-gradient(0deg, rgba(13, 14, 13, .72), transparent 46%);
+    }
+
+    .story-content {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 40px));
+      height: 100%;
+      margin: 0 auto;
+    }
+
+    .story-panel {
+      position: absolute;
+      top: 54%;
+      left: 0;
+      width: min(650px, 58vw);
+      opacity: 0;
+      transform: translateY(calc(-50% + 16px));
+      transition: opacity .3s ease, transform .38s ease;
+      pointer-events: none;
+      text-shadow: 0 3px 24px rgba(0, 0, 0, .55);
+    }
+
+    .story-panel.is-active {
+      opacity: 1;
+      transform: translateY(-50%);
+    }
+
+    .story-panel h2 {
+      max-width: 640px;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(40px, 4.8vw, 60px);
+      font-weight: 760;
+      line-height: .9;
+      letter-spacing: -.058em;
+    }
+
+    .story-panel h2 em {
+      color: var(--accent);
+      font-family: var(--display);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -.035em;
+    }
+
+    .story-panel p {
+      max-width: 540px;
+      margin: 24px 0 0;
+      color: #d0d1cc;
+      font-size: clamp(17px, 1.6vw, 21px);
+    }
+
+    .story-index {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--accent);
       font-size: 13px;
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: .12em;
+    }
+
+    .story-footer {
+      position: absolute;
+      right: 0;
+      bottom: clamp(28px, 5vh, 55px);
+      left: 0;
+    }
+
+    .story-hint {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, .62);
+      font-size: 11px;
+      font-weight: 720;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
-    .episodes h2 {
-      max-width: 680px;
-      margin: 0 auto;
-      font-size: clamp(26px, 3vw, 34px);
-      line-height: 1.1;
-      letter-spacing: -.025em;
+    .story-progress {
+      height: 2px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .24);
     }
+
+    .story-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width .12s linear;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .stat {
+      min-height: 150px;
+      padding: 24px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+
+    .stats-section { padding: 40px 0 54px; }
+
+    .stats-section .stats-grid { margin-top: 0; }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 16px;
+      color: #fff;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .stat span { color: var(--muted); font-size: 14px; line-height: 1.35; }
 
     .episode-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-top: 24px;
+      margin-top: 34px;
     }
 
     .episode-card {
-      display: flex;
-      flex-direction: column;
+      display: block;
       overflow: hidden;
-      min-height: 0;
       padding: 0;
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, .07);
-      color: #f5f5f2;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: rgba(255, 255, 255, .035);
+      color: var(--text);
       font: inherit;
       text-align: left;
-      text-decoration: none;
       cursor: pointer;
-      text-align: left;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, .22);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      transition: transform .18s, border-color .18s, background .18s;
+      box-shadow: none;
+      transition: transform .28s cubic-bezier(.2, .75, .25, 1), border-color .22s, background .22s;
     }
 
     .episode-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: rgba(230, 185, 112, .72);
-      background: rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .09);
     }
 
-    .episode-cover {
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      flex: 0 0 auto;
+    .episode-card img {
+      display: block;
       width: 100%;
-      aspect-ratio: 16 / 10;
-      padding: 16px;
-      isolation: isolate;
-    }
-
-    .episode-cover::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(circle at 75% 28%, rgba(230, 185, 112, .72), transparent 26%),
-        linear-gradient(135deg, #454749, #1b1d1e 55%, #6d5835);
-    }
-
-    .episode-two::before {
-      background:
-        radial-gradient(circle at 28% 25%, rgba(239, 201, 133, .66), transparent 24%),
-        linear-gradient(155deg, #1b1d1e, #55585a 58%, #463b29);
-    }
-
-    .episode-three::before {
-      background:
-        radial-gradient(circle at 68% 68%, rgba(230, 185, 112, .7), transparent 23%),
-        linear-gradient(120deg, #626466, #1d1f20 52%, #625034);
-    }
-
-    .episode-cover::after {
-      content: "";
-      position: absolute;
-      inset: 45% 0 0;
-      z-index: -1;
-      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .72));
-    }
-
-    .episode-thumbnail {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      width: 100%;
-      height: 100%;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
-    }
-
-    .episode-one .episode-thumbnail {
       object-position: center top;
+      transform: scale(1.001);
+      transition: transform .55s cubic-bezier(.2, .72, .25, 1);
     }
 
-    .play {
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
+    .episode-card:hover img,
+    .episode-card:focus-visible img {
+      transform: scale(1.055);
+    }
+
+    .episode-copy { padding: 18px; }
+    .episode-copy h3 {
+      margin: 0 0 8px;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 23px;
+      font-weight: 760;
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+    .episode-copy p { margin: 0; color: #aaaca8; font-size: 14px; }
+    .episodes-action { margin-top: 30px; text-align: center; }
+
+    #episodes { padding: 62px 0 76px; }
+    #heroes { padding: 68px 0 54px; }
+
+    .heroes-strip {
       display: grid;
-      width: 38px;
-      height: 38px;
+      grid-template-columns: repeat(9, minmax(92px, 1fr));
+      gap: clamp(14px, 2vw, 28px);
+      align-items: start;
+      margin-top: 42px;
+    }
+
+    #heroes > .eyebrow { text-align: center; }
+
+    #heroes > .section-intro {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    .hero-person {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .hero-portrait {
+      position: relative;
+      display: grid;
+      width: 100%;
+      aspect-ratio: 1;
       place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .16);
       border-radius: 50%;
-      background: var(--accent);
-      color: #171816;
-      font-size: 13px;
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, .16), transparent 28%),
+        linear-gradient(145deg, #4b453b, #222422 60%, #141514);
+      box-shadow: inset 0 0 0 6px rgba(0, 0, 0, .12);
+      color: #e9c98f;
+      font-size: clamp(19px, 2vw, 30px);
+      font-weight: 820;
+      letter-spacing: -.04em;
+      transition: transform .18s, border-color .18s, box-shadow .18s;
     }
 
-    .episode-copy { padding: 17px; }
-
-    .episode-card h3 {
-      margin: 0 0 6px;
-      font-size: 19px;
-      line-height: 1.15;
+    .hero-portrait::after {
+      content: "";
+      position: absolute;
+      inset: auto 8% 7% 8%;
+      height: 38%;
+      border-radius: 50% 50% 38% 38%;
+      background: rgba(0, 0, 0, .2);
+      filter: blur(1px);
     }
 
-    .episode-card p {
+    .hero-portrait span { position: relative; z-index: 1; }
+
+    .hero-person:hover .hero-portrait {
+      transform: translateY(-4px) scale(1.025);
+      border-color: rgba(230, 185, 112, .75);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, .3), inset 0 0 0 6px rgba(230, 185, 112, .06);
+    }
+
+    .hero-name {
+      margin: 12px 0 0;
+      color: #ddded9;
+      font-size: 14px;
+      font-weight: 680;
+      line-height: 1.2;
+    }
+
+    .hero-total .hero-portrait {
+      border-color: rgba(230, 185, 112, .35);
+      background: transparent;
+      box-shadow: none;
+      color: var(--accent);
+      font-size: clamp(32px, 4vw, 58px);
+    }
+
+    .hero-total .hero-portrait::after { display: none; }
+    .hero-total .hero-name { color: var(--muted); font-weight: 580; }
+
+    .paths {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .path-card {
+      display: flex;
+      min-height: 310px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: clamp(28px, 4vw, 48px);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .path-card:first-child {
+      border-color: rgba(230, 185, 112, .38);
+      background: linear-gradient(145deg, rgba(230, 185, 112, .13), rgba(255, 255, 255, .045));
+    }
+
+    .path-card h3 {
       margin: 0;
-      color: #aaaca8;
-      font-size: 14px;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(31px, 3.2vw, 44px);
+      font-weight: 760;
+      line-height: .98;
+      letter-spacing: -.04em;
+    }
+    .path-card p { max-width: 470px; margin: 18px 0 28px; color: var(--muted); font-size: 17px; }
+    .path-card .button { margin-top: auto; }
+
+    .team-layout {
+      margin-top: 28px;
     }
 
-    .channel-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 24px;
-      padding: 11px 18px;
-      border: 1px solid rgba(230, 185, 112, .58);
-      border-radius: 999px;
-      color: #efc985;
-      font-size: 14px;
-      font-weight: 750;
-      text-decoration: none;
-      transition: color .18s, background .18s, border-color .18s, transform .18s;
+    #participation { padding: 38px 0 54px; border-top: 0; }
+    .team-section { padding-top: 22px; padding-bottom: 76px; border-top: 0; }
+
+    .team-shell {
+      padding: clamp(32px, 4.5vw, 54px) clamp(18px, 4vw, 48px) clamp(36px, 5vw, 60px);
+      border: 1px solid rgba(230, 185, 112, .28);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(230, 185, 112, .09), transparent 38%),
+        rgba(255, 255, 255, .025);
     }
 
-    .channel-link:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-      background: rgba(230, 185, 112, .1);
-      color: #fff;
+    .team-title {
+      font-size: 14px;
+      letter-spacing: .13em;
+      text-align: center;
+    }
+
+    .team-intro {
+      max-width: 620px;
+      margin: 16px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .team-statement {
+      max-width: 720px;
+      margin: 0 0 38px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(24px, 4vw, 52px);
+    }
+
+    .team-profile { display: flex; flex-direction: column; text-align: center; }
+    .team-profile h3 {
+      margin: 0 0 8px;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(27px, 2.8vw, 38px);
+      font-weight: 760;
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+    .team-role { margin: 0 0 12px; color: #efc985; font-size: 13px; font-weight: 780; letter-spacing: .035em; text-transform: uppercase; }
+    .team-description { min-height: 96px; margin: 0 auto 24px; color: var(--muted); font-size: 15px; }
+
+    .team-avatar {
+      display: grid;
+      width: min(145px, 58%);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(230, 185, 112, .46);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 25%, rgba(255, 255, 255, .19), transparent 26%),
+        linear-gradient(145deg, #b98b50, #6a5134 52%, #242522);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, .3);
+      color: #fbf4e8;
+      font-size: clamp(34px, 4vw, 58px);
+      font-weight: 830;
+      letter-spacing: -.05em;
+    }
+
+    .team-profile .team-avatar { margin-top: auto; }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity .65s ease var(--reveal-delay, 0ms),
+        transform .75s cubic-bezier(.2, .72, .25, 1) var(--reveal-delay, 0ms);
+    }
+
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stat.reveal-item {
+      opacity: 0;
+      transform: translateY(58px) scale(.94);
+      transition: none;
+    }
+
+    .stat.reveal-item:nth-child(1) { --stat-delay: 0ms; }
+    .stat.reveal-item:nth-child(2) { --stat-delay: 115ms; }
+    .stat.reveal-item:nth-child(3) { --stat-delay: 230ms; }
+    .stat.reveal-item:nth-child(4) { --stat-delay: 345ms; }
+
+    .stat.reveal-item.is-visible {
+      animation: stat-rise .78s cubic-bezier(.18, .82, .24, 1) var(--stat-delay) both;
+    }
+
+    @keyframes stat-rise {
+      0% { opacity: 0; transform: translateY(58px) scale(.94); }
+      62% { opacity: 1; transform: translateY(-9px) scale(1.012); }
+      82% { opacity: 1; transform: translateY(3px) scale(.998); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .video-modal {
@@ -320,9 +699,9 @@
       inset: 0;
       z-index: 100;
       display: grid;
-      place-items: center;
       padding: 24px;
-      background: rgba(7, 8, 8, .86);
+      place-items: center;
+      background: rgba(7, 8, 8, .88);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
@@ -363,242 +742,23 @@
       color: #171816;
       font-size: 24px;
       line-height: 1;
+      cursor: pointer;
     }
 
-    .form-heading {
-      max-width: 720px;
-      margin: 44px auto 18px;
-      text-align: center;
-    }
-
-    .form-heading h2 {
-      margin: 0 0 8px;
-      font-size: clamp(30px, 4vw, 44px);
-      letter-spacing: -.035em;
-    }
-
-    .form-heading p { margin: 0; color: #b5b7b3; }
-
-    form, .result {
-      width: auto;
-      max-width: 720px;
-      padding: clamp(20px, 4vw, 36px);
-      margin-right: auto;
-      margin-left: auto;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      color: var(--text);
-      box-shadow: 0 10px 30px rgba(23, 24, 22, .05);
-    }
-
-    .section {
-      padding: 0 0 28px;
-      margin: 0 0 28px;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section:last-of-type { margin-bottom: 20px; }
-
-    legend, .section-title {
-      width: 100%;
-      padding: 0;
-      margin: 0 0 16px;
-      font-size: 21px;
-      font-weight: 750;
-      letter-spacing: -.015em;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .field { margin-top: 18px; }
-    .grid .field { margin-top: 0; }
-
-    label, .label {
-      display: block;
-      margin-bottom: 7px;
-      font-weight: 650;
-    }
-
-    .optional {
+    footer {
+      padding: 42px 0 46px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      font-weight: 400;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #b9bbb5;
-      border-radius: 10px;
-      background: #fff;
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      transition: border-color .15s, box-shadow .15s;
-    }
-
-    input, select { height: 48px; padding: 0 13px; }
-
-    select {
-      padding-right: 44px;
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%235c5f59' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      background-size: 16px;
-    }
-
-    textarea { min-height: 128px; padding: 12px 13px; resize: vertical; }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(36, 72, 216, .13);
-    }
-
-    [aria-invalid="true"] {
-      border-color: var(--error);
-      box-shadow: 0 0 0 3px rgba(180, 35, 24, .1);
-    }
-
-    .hint, .counter, .error {
-      margin: 6px 0 0;
-      font-size: 13px;
-    }
-
-    .hint, .counter { color: var(--muted); }
-    .counter { text-align: right; }
-    .counter.is-near-limit { color: #9a6700; }
-    .error { min-height: 19px; color: var(--error); }
-
-    .choice-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .choice {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      min-height: 82px;
-      margin: 0;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .choice:has(input:checked) {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      box-shadow: 0 0 0 1px var(--accent);
-    }
-
-    .choice input {
-      flex: 0 0 auto;
-      width: 18px;
-      height: 18px;
-      margin: 2px 0 0;
-      accent-color: var(--accent);
-    }
-
-    .choice strong { display: block; }
-    .choice small { display: block; margin-top: 3px; color: var(--muted); font-weight: 400; }
-
-    .branch[hidden] { display: none; }
-
-    .consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin: 0;
-      font-weight: 400;
-    }
-
-    .consent input {
-      flex: 0 0 auto;
-      width: 18px;
-      height: 18px;
-      margin: 2px 0 0;
-      accent-color: var(--accent);
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    button {
-      min-height: 46px;
-      padding: 0 18px;
-      border: 0;
-      border-radius: 10px;
-      font: inherit;
-      font-weight: 750;
-      cursor: pointer;
-    }
-
-    button[type="submit"] { background: var(--accent); color: #171816; }
-    button[type="button"] { background: #ecece7; color: var(--text); }
-    button:disabled { cursor: wait; opacity: .62; }
-
-    .honeypot {
-      position: absolute;
-      left: -10000px;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-
-    button.episode-card {
-      min-height: 0;
-      padding: 0;
-      background: rgba(255, 255, 255, .07);
-      color: #f5f5f2;
-      font: inherit;
-    }
-    button.episode-card:hover {
-      background: rgba(255, 255, 255, .1);
-      border-color: rgba(230, 185, 112, .72);
-    }
-    button:hover { filter: brightness(.97); }
-
-    .form-status {
-      margin: 14px 0 0;
-      font-weight: 650;
-    }
-
-    .form-status.error-status { color: var(--error); }
-
-    .result {
-      margin-top: 20px;
-      border-color: #a7d7b2;
-    }
-
-    .result[hidden] { display: none; }
-    .result h2 { margin: 0 0 8px; font-size: 24px; }
-    .result p { margin: 0 0 14px; color: var(--success); font-weight: 650; }
-
-    .site-footer {
-      max-width: 720px;
-      margin: 48px auto 0;
-      padding: 28px 0 36px;
-      border-top: 1px solid rgba(255, 255, 255, .12);
-      color: #b5b7b3;
+      font-size: 14px;
       text-align: center;
     }
 
-    .site-footer p {
-      margin: 0;
-      font-size: 14px;
+    .footer-logo {
+      display: block;
+      width: min(185px, 55vw);
+      height: auto;
+      margin: 0 auto 24px;
+      opacity: .92;
     }
 
     .footer-links {
@@ -606,250 +766,377 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px 22px;
-      margin-bottom: 13px;
+      margin-bottom: 12px;
     }
 
-    .footer-links a {
-      color: #efc985;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color .18s;
-    }
-
+    .footer-links a { color: #efc985; font-weight: 700; text-decoration: none; }
     .footer-links a:hover { color: #fff; }
 
-    @media (max-width: 620px) {
-      main { width: min(100% - 20px, 720px); margin-top: 24px; }
-      header { padding-top: 24px; }
-      .grid, .choice-grid, .overview, .episode-grid { grid-template-columns: 1fr; }
-      .episodes { padding: 8px 0 26px; }
-      .episodes h2, .episode-grid { display: none; }
-      .channel-link { margin-top: 0; }
-      form, .result { border-radius: 14px; }
+    @media (max-width: 900px) {
+      .hero-socials { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .episode-grid { grid-template-columns: repeat(2, 1fr); }
+      .heroes-strip {
+        grid-template-columns: repeat(9, 112px);
+        margin-right: calc((100vw - min(1180px, calc(100vw - 40px))) / -2);
+        padding-right: 30px;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: none;
+      }
+      .heroes-strip::-webkit-scrollbar { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      main { width: min(100% - 22px, 680px); }
+      .hero { padding: 18px 0 12px; }
+      .hero-inner {
+        display: flex;
+        width: calc(100% - 24px);
+        justify-content: space-between;
+        gap: 10px;
+        padding-bottom: 13px;
+      }
+      .brand-logo { width: min(125px, 34vw); }
+      .hero-nav { flex: 0 0 auto; gap: 9px; }
+      .hero-nav a { font-size: 11px; white-space: nowrap; }
+      .hero-nav a:nth-child(2) { display: none; }
+      .hero-nav .nav-primary { padding: 7px 10px; }
+      .hero-note { margin-top: 54px; }
+      .section { padding: 64px 0; }
+      .about-layout { grid-template-columns: 1fr; gap: 30px; }
+      .about-copy { font-size: 17px; }
+      .manifesto { padding: 24px 22px; }
+      .story-scroll { height: 450svh; }
+      .story-stage { min-height: 620px; }
+      .story-backgrounds {
+        top: 74px;
+        right: 0;
+        bottom: auto;
+        left: 0;
+        height: 51%;
+        overflow: hidden;
+      }
+      .story-background { background-position: 68% center; }
+      .story-video {
+        top: 74px;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        width: auto;
+        max-width: none;
+        height: 51%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: 0 50%;
+        transform: translate3d(calc(74vw - max(67.1svh, 416px)), 0, 0);
+      }
+      .story-content { width: calc(100% - 32px); }
+      .story-panel {
+        top: auto;
+        bottom: 68px;
+        width: min(94%, 560px);
+        transform: translateY(14px);
+        text-shadow: none;
+      }
+      .story-panel.is-active { transform: translateY(0); }
+      .story-panel h2 { font-size: clamp(32px, 10vw, 44px); }
+      .story-panel p {
+        max-width: 360px;
+        margin-top: 14px;
+        font-size: 15px;
+        line-height: 1.48;
+      }
+      .story-index { margin-bottom: 10px; font-size: 10px; }
+      .story-shade {
+        background:
+          linear-gradient(0deg, #101110 0%, #101110 26%, rgba(16, 17, 16, .88) 35%, transparent 52%, transparent 72%, rgba(16, 17, 16, .94) 100%);
+      }
+      .story-footer { bottom: 18px; }
+      .story-hint { font-size: 8px; letter-spacing: .1em; }
+      .stats-section { padding: 34px 0 44px; }
+      #heroes { padding: 58px 0 40px; }
+      #participation { padding: 28px 0 42px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat { min-height: 135px; padding: 21px 17px; }
+      .episode-grid { display: none; }
+      .heroes-strip {
+        grid-template-columns: repeat(9, 104px);
+        gap: 18px;
+        margin-top: 32px;
+        margin-right: -11px;
+        padding-right: 22px;
+      }
+      .hero-name { font-size: 13px; }
+      .paths { grid-template-columns: 1fr; }
+      .path-card { min-height: 285px; border-radius: 18px; }
+      .founders-grid { gap: 14px; }
       .video-modal { padding: 10px; }
       .video-dialog { padding: 8px; }
       .video-close { top: 8px; right: 8px; z-index: 2; }
+    }
+
+    @media (max-width: 520px) {
+      .hero-nav a:first-child { display: none; }
+      #participation { padding-bottom: 42px; }
+      .team-section { padding-top: 16px; padding-bottom: 52px; }
+      .team-shell { padding: 26px 10px 30px; border-radius: 18px; }
+      #teamTitle { font-size: 12px; }
+      .team-intro { max-width: 330px; margin-top: 12px; font-size: 13px; line-height: 1.5; }
+      .team-layout { margin-top: 24px; }
+      .founders-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .team-profile h3 { margin-bottom: 6px; font-size: clamp(16px, 4.8vw, 21px); }
+      .team-role {
+        min-height: 31px;
+        margin-bottom: 8px;
+        font-size: 8px;
+        line-height: 1.3;
+        letter-spacing: .02em;
+      }
+      .team-description {
+        min-height: 105px;
+        margin-bottom: 14px;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+      .team-avatar { width: min(92px, 88%); box-shadow: 0 14px 34px rgba(0, 0, 0, .26); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .story-background,
+      .story-panel { transition: none; }
+      .reveal-item { opacity: 1; transform: none; transition: none; }
+      .stat.reveal-item.is-visible { animation: none; opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
   <main>
-    <header>
-      <img class="brand-logo" src="assets/america-logo.png" alt="Америка глазами иммигрантов">
-      <p class="intro">Медиа о людях, которые живут, работают и строят своё дело в США. Мы показываем профессии, предпринимательство и реальную жизнь изнутри — через личные истории наших героев.</p>
+    <header class="hero">
+      <div class="hero-inner">
+        <a class="brand-home" href="#about" aria-label="Америка глазами иммигрантов — на первый экран">
+          <img class="brand-logo" src="assets/america-logo.png" alt="Америка глазами иммигрантов">
+        </a>
+        <nav class="hero-nav" aria-label="Основные разделы">
+          <a href="#episodes">Выпуски</a>
+          <a href="#participation">Сотрудничество</a>
+          <a class="nav-primary be-hero-link" href="be-hero/">Стать героем</a>
+        </nav>
+        <nav class="hero-socials" aria-label="Социальные сети">
+          <a href="https://www.instagram.com/rybalko_iliya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a href="https://www.tiktok.com/@rybalko_ilia" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TT</a>
+          <a href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </nav>
+      </div>
     </header>
 
-    <section class="episodes" aria-labelledby="episodesTitle">
-      <h2 id="episodesTitle">Герои наших выпусков</h2>
+    <section class="section" id="episodes" aria-label="Выпуски">
+      <p class="eyebrow">Выпуски</p>
+      <p class="section-intro">Шесть разных способов увидеть Америку — через профессию, характер, выбор и место, которое человек сделал своим.</p>
 
       <div class="episode-grid">
         <button class="episode-card" type="button" data-video-id="dj2gjyJxyYs" aria-label="Смотреть выпуск Один день с копом в Америке">
-          <div class="episode-cover episode-one">
-            <img class="episode-thumbnail" src="https://i.ytimg.com/vi/dj2gjyJxyYs/maxresdefault.jpg" alt="Обложка выпуска «Один день с копом в Америке»">
-            <span class="play" aria-hidden="true">▶</span>
-          </div>
+          <img src="https://i.ytimg.com/vi/dj2gjyJxyYs/maxresdefault.jpg" alt="Один день с копом в Америке">
           <div class="episode-copy">
             <h3>Один день с копом в Америке</h3>
             <p>Как устроена работа полиции США и что остаётся за пределами обычного взгляда.</p>
           </div>
         </button>
-
-        <button class="episode-card" type="button" data-video-id="pGV8R9EzU_E" aria-label="Смотреть выпуск Как простой работяга делает 5000 долларов в день">
-          <div class="episode-cover episode-two">
-            <img class="episode-thumbnail" src="https://i.ytimg.com/vi/pGV8R9EzU_E/maxresdefault.jpg" alt="Обложка выпуска о бизнесе с доходом 5000 долларов в день">
-            <span class="play" aria-hidden="true">▶</span>
-          </div>
+        <button class="episode-card" type="button" data-video-id="dIQ4jvRhXPM" aria-label="Смотреть выпуск об армии США">
+          <img src="https://i.ytimg.com/vi/dIQ4jvRhXPM/maxresdefault.jpg" alt="История Ивана Руденко и армии США">
           <div class="episode-copy">
-            <h3>Как простой работяга делает $5 000 в день</h3>
+            <h3>Армия США изнутри</h3>
+            <p>Опыт Ивана Руденко, служба и взгляд на американскую систему без дистанции.</p>
+          </div>
+        </button>
+        <button class="episode-card" type="button" data-video-id="B3I19OY3ZfA" aria-label="Смотреть выпуск о жизни на лодке">
+          <img src="https://i.ytimg.com/vi/B3I19OY3ZfA/maxresdefault.jpg" alt="Жизнь на лодке в США">
+          <div class="episode-copy">
+            <h3>Дом, который всегда в пути</h3>
+            <p>Как устроена жизнь на лодке и почему привычный адрес нужен не каждому.</p>
+          </div>
+        </button>
+        <button class="episode-card" type="button" data-video-id="niZFxjP5GLc" aria-label="Смотреть выпуск Дальнобойщик в США">
+          <img src="https://i.ytimg.com/vi/niZFxjP5GLc/maxresdefault.jpg" alt="Дальнобойщик в США">
+          <div class="episode-copy">
+            <h3>Дальнобойщик в США</h3>
+            <p>Американские дороги, реальные доходы и жизнь водителя изнутри.</p>
+          </div>
+        </button>
+        <button class="episode-card" type="button" data-video-id="pGV8R9EzU_E" aria-label="Смотреть выпуск Как простой работяга делает 5000 долларов в день">
+          <img src="https://i.ytimg.com/vi/pGV8R9EzU_E/maxresdefault.jpg" alt="Как простой работяга делает 5000 долларов в день">
+          <div class="episode-copy">
+            <h3>Как работяга делает $5 000 в день</h3>
             <p>История человека, который начал с нуля и построил своё дело в США.</p>
           </div>
         </button>
-
-        <button class="episode-card" type="button" data-video-id="niZFxjP5GLc" aria-label="Смотреть выпуск Дальнобойщик в США">
-          <div class="episode-cover episode-three">
-            <img class="episode-thumbnail" src="https://i.ytimg.com/vi/niZFxjP5GLc/maxresdefault.jpg" alt="Обложка выпуска «Дальнобойщик в США»">
-            <span class="play" aria-hidden="true">▶</span>
-          </div>
+        <button class="episode-card" type="button" data-video-id="Vd0ScTl6X94" aria-label="Смотреть выпуск об Аляске">
+          <img src="https://i.ytimg.com/vi/Vd0ScTl6X94/maxresdefault.jpg" alt="Жизнь на Аляске">
           <div class="episode-copy">
-            <h3>Дальнобойщик в США: $10 000 в месяц</h3>
-            <p>Работа на американских дорогах, реальные доходы и жизнь водителя изнутри.</p>
+            <h3>Аляска глазами тех, кто здесь живёт</h3>
+            <p>Большая земля, особый ритм и повседневность вдали от привычной Америки.</p>
           </div>
         </button>
       </div>
 
-      <a class="channel-link" href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer">Перейти на YouTube-канал&nbsp;↗</a>
-    </section>
-
-    <section class="form-heading">
-      <p class="section-kicker">Стать героем</p>
-      <h2>Расскажите о себе</h2>
-    </section>
-
-    <form id="applicationForm" novalidate>
-      <div class="honeypot" aria-hidden="true">
-        <label for="website">Не заполняйте это поле</label>
-        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      <div class="episodes-action">
+        <a class="button button-secondary" href="https://www.youtube.com/@Iliya_Rybalko/videos" target="_blank" rel="noopener noreferrer">Смотреть все выпуски&nbsp;↗</a>
       </div>
+    </section>
 
-      <fieldset class="section">
-        <legend>Основная информация</legend>
-
-        <div class="field">
-          <label for="name">Как вас зовут?</label>
-          <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
-          <p class="error" id="nameError" aria-live="polite"></p>
+    <section class="story-scroll" id="about" aria-label="О проекте">
+      <div class="story-stage">
+        <div class="story-visual">
+        <div class="story-backgrounds" aria-hidden="true">
+          <div class="story-background is-active" data-story-background="0" style="background-image: url('https://i.ytimg.com/vi/dj2gjyJxyYs/maxresdefault.jpg')"></div>
+          <div class="story-background" data-story-background="1" style="background-image: url('https://i.ytimg.com/vi/pGV8R9EzU_E/maxresdefault.jpg')"></div>
+          <div class="story-background" data-story-background="2" style="background-image: url('https://i.ytimg.com/vi/Vd0ScTl6X94/maxresdefault.jpg')"></div>
+          <div class="story-background" data-story-background="3" style="background-image: url('https://i.ytimg.com/vi/niZFxjP5GLc/maxresdefault.jpg')"></div>
         </div>
-
-        <div class="grid">
-          <div class="field">
-            <label for="state">Штат</label>
-            <select id="state" name="state" required>
-              <option value="">Выберите штат</option>
-            </select>
-            <p class="error" id="stateError" aria-live="polite"></p>
+        <video class="story-video" id="storyVideo" muted playsinline preload="auto" aria-hidden="true" src="https://aileadr.com/landing-next/assets/cinema/leadr-film-1440.mp4"></video>
+        <div class="story-shade" aria-hidden="true"></div>
+        <div class="story-content">
+          <div class="story-panel is-active" data-story-panel="0">
+            <span class="story-index">01 · КТО МЫ</span>
+            <h2>Медиа<br><em>об иммигрантах</em></h2>
+            <p>Рассказываем о людях, которые живут, работают и строят своё дело в США.</p>
           </div>
 
-          <div class="field">
-            <label for="city">Город</label>
-            <input id="city" name="city" type="text" autocomplete="address-level2" minlength="2" maxlength="80" required>
-            <p class="error" id="cityError" aria-live="polite"></p>
+          <div class="story-panel" data-story-panel="1">
+            <span class="story-index">02 · НАША ОПТИКА</span>
+            <h2>Показываем жизнь<br><em>изнутри</em></h2>
+            <p>Не ограничиваемся разговором в студии: проводим день рядом с героем, в его настоящей среде.</p>
+          </div>
+
+          <div class="story-panel" data-story-panel="2">
+            <span class="story-index">03 · ЧТО МЫ СНИМАЕМ</span>
+            <h2>Профессии, бизнес<br><em>и личный путь</em></h2>
+            <p>Показываем работу, своё дело, дом, город и решения, которые обычно остаются за кадром.</p>
+          </div>
+
+          <div class="story-panel" data-story-panel="3">
+            <span class="story-index">04 · ЗАЧЕМ</span>
+            <h2>Живая энциклопедия<br><em>иммиграции</em></h2>
+            <p>Собираем разные взгляды и личные истории, чтобы показывать Америку объёмно — без деления на исключительно хорошую или плохую.</p>
+          </div>
+
+          <div class="story-footer">
+            <div class="story-hint"><span>Листайте, чтобы увидеть проект</span><span id="storyCounter">01 / 04</span></div>
+            <div class="story-progress" aria-hidden="true"><span id="storyProgress"></span></div>
           </div>
         </div>
-      </fieldset>
-
-      <fieldset class="section" id="categorySection">
-        <legend>О чём вы хотите рассказать?</legend>
-        <div class="choice-grid">
-          <label class="choice">
-            <input type="radio" name="category" value="profession" required>
-            <span><strong>О своей профессии</strong><small>Показать работу и её внутреннюю кухню.</small></span>
-          </label>
-          <label class="choice">
-            <input type="radio" name="category" value="business" required>
-            <span><strong>О своём бизнесе</strong><small>Для основателей, готовых показать бизнес изнутри.</small></span>
-          </label>
         </div>
-        <p class="error" id="categoryError" aria-live="polite"></p>
-      </fieldset>
-
-      <fieldset class="section branch" id="professionBranch" hidden disabled>
-        <legend>О профессии</legend>
-
-        <div class="field">
-          <label for="professionDescription">Какая у вас профессия и чем конкретно вы занимаетесь?</label>
-          <textarea id="professionDescription" name="profession_description" minlength="20" maxlength="600" required></textarea>
-          <p class="hint">Минимум 20, максимум 600 символов.</p>
-          <p class="counter" data-counter-for="professionDescription"></p>
-          <p class="error" id="professionDescriptionError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="professionFilming">Что мы сможем показать и снять в процессе вашей работы?</label>
-          <textarea id="professionFilming" name="profession_filming" minlength="30" maxlength="1200" required></textarea>
-          <p class="hint">Например: рабочий процесс, реальные задачи, оборудование, выезды или взаимодействие с людьми.</p>
-          <p class="counter" data-counter-for="professionFilming"></p>
-          <p class="error" id="professionFilmingError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="professionLink">Профессиональный профиль или публикации <span class="optional">— необязательно</span></label>
-          <input id="professionLink" name="profession_link" type="url" inputmode="url" placeholder="https://...">
-          <p class="error" id="professionLinkError" aria-live="polite"></p>
-        </div>
-      </fieldset>
-
-      <fieldset class="section branch" id="businessBranch" hidden disabled>
-        <legend>О бизнесе</legend>
-
-        <div class="field">
-          <label for="businessName">Название бизнеса</label>
-          <input id="businessName" name="business_name" type="text" minlength="2" maxlength="120" required>
-          <p class="error" id="businessNameError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="businessDescription">Чем занимается ваш бизнес?</label>
-          <textarea id="businessDescription" name="business_description" minlength="20" maxlength="600" required></textarea>
-          <p class="hint">Минимум 20, максимум 600 символов.</p>
-          <p class="counter" data-counter-for="businessDescription"></p>
-          <p class="error" id="businessDescriptionError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="businessFilming">Что мы сможем показать и снять изнутри?</label>
-          <textarea id="businessFilming" name="business_filming" minlength="30" maxlength="1200" required></textarea>
-          <p class="hint">Например: создание продукта, работу команды, обслуживание клиентов, производство или обычный рабочий день.</p>
-          <p class="counter" data-counter-for="businessFilming"></p>
-          <p class="error" id="businessFilmingError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="businessLink">Сайт или социальные сети бизнеса</label>
-          <input id="businessLink" name="business_link" type="url" inputmode="url" placeholder="https://..." required>
-          <p class="error" id="businessLinkError" aria-live="polite"></p>
-        </div>
-      </fieldset>
-
-      <fieldset class="section">
-        <legend>Немного о вас</legend>
-        <div class="field">
-          <label for="about">Расскажите немного о себе как о человеке</label>
-          <textarea id="about" name="about" minlength="30" maxlength="800" required></textarea>
-          <p class="hint">Чем вы живёте, что вам важно и что лучше всего вас характеризует? Минимум 30, максимум 800 символов.</p>
-          <p class="counter" data-counter-for="about"></p>
-          <p class="error" id="aboutError" aria-live="polite"></p>
-        </div>
-      </fieldset>
-
-      <fieldset class="section" id="contactSection">
-        <legend>Контактные данные</legend>
-
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
-          <p class="error" id="emailError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="whatsapp">WhatsApp <span class="optional">— необязательно</span></label>
-          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+1 555 123 4567">
-          <p class="error" id="whatsappError" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="instagram">Instagram <span class="optional">— необязательно</span></label>
-          <input id="instagram" name="instagram" type="text" placeholder="@username или ссылка" maxlength="120">
-          <p class="error" id="instagramError" aria-live="polite"></p>
-        </div>
-      </fieldset>
-
-      <div class="field">
-        <label class="consent">
-          <input id="consent" name="consent" type="checkbox" required>
-          <span>Я согласен(-на) на обработку указанных данных и на то, чтобы команда проекта связалась со мной по поводу заявки.</span>
-        </label>
-        <p class="error" id="consentError" aria-live="polite"></p>
       </div>
-
-      <div class="actions">
-        <button type="submit">Отправить анкету</button>
-      </div>
-      <p class="form-status" id="formStatus" aria-live="polite"></p>
-    </form>
-
-    <section class="result" id="result" hidden>
-      <h2>Заявка отправлена</h2>
-      <p>Спасибо! Команда проекта изучит вашу историю и свяжется с вами, если она подойдёт для выпуска.</p>
     </section>
 
-    <footer class="site-footer">
+    <section class="section stats-section" id="project-scale" aria-label="Проект в цифрах">
+      <div class="stats-grid">
+        <div class="stat"><strong>150 тыс.+</strong><span>подписчиков на наших площадках</span></div>
+        <div class="stat"><strong>14 млн+</strong><span>просмотров полноформатных выпусков</span></div>
+        <div class="stat"><strong>80+</strong><span>больших историй и выпусков</span></div>
+        <div class="stat"><strong>2 млн+</strong><span>просмотров у отдельных историй</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="heroes" aria-labelledby="peopleTitle">
+      <h2 class="eyebrow" id="peopleTitle">Герои проекта</h2>
+      <p class="section-intro">Предприниматели, артисты, спортсмены, авторы и профессионалы с разным опытом жизни в США.</p>
+      <div class="heroes-strip" aria-label="Известные герои проекта">
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>ОМ</span></div>
+          <p class="hero-name">Оля Маркес</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>АС</span></div>
+          <p class="hero-name">Амиран Сардаров</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>ИВ</span></div>
+          <p class="hero-name">Илья Варламов</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>ТМ</span></div>
+          <p class="hero-name">Таир Мамедов</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>ДГ</span></div>
+          <p class="hero-name">Дима Гордей</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>АР</span></div>
+          <p class="hero-name">Анна Роде</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>ИР</span></div>
+          <p class="hero-name">Иван Руденко</p>
+        </div>
+        <div class="hero-person">
+          <div class="hero-portrait" aria-hidden="true"><span>CR</span></div>
+          <p class="hero-name">Crystal Rush</p>
+        </div>
+        <div class="hero-person hero-total">
+          <div class="hero-portrait" aria-hidden="true"><span>80+</span></div>
+          <p class="hero-name">героев проекта</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="participation" aria-labelledby="participationTitle">
+      <h2 id="participationTitle">Стать частью проекта</h2>
+      <div class="paths">
+        <article class="path-card">
+          <h3>Рассказать свою историю</h3>
+          <p>Если у вас интересная профессия или бизнес в США, расскажите о себе. Мы изучим заявку и свяжемся, если история подойдёт для выпуска.</p>
+          <a class="button button-primary be-hero-link" href="be-hero/">Стать героем</a>
+        </article>
+        <article class="path-card">
+          <h3>Предложить сотрудничество</h3>
+          <p>Для брендов и экспертов: партнёрство с медиа, поддержка выпусков, рекламные интеграции и участие в тематических историях.</p>
+          <span class="button button-secondary" aria-disabled="true">Страница сотрудничества — скоро</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section team-section" aria-labelledby="teamTitle">
+      <div class="team-shell">
+        <h2 class="eyebrow team-title" id="teamTitle">Команда проекта</h2>
+        <p class="team-intro">Люди, которые отвечают за героев, содержание и развитие проекта.</p>
+        <div class="team-layout">
+          <div class="founders-grid">
+            <article class="team-profile">
+              <h3>Илья</h3>
+              <p class="team-role">Сооснователь / ведущий</p>
+              <p class="team-description">Лицо проекта: находит героев, приезжает к ним и проживает историю вместе со зрителем.</p>
+              <div class="team-avatar" aria-label="Место для фотографии Ильи">И</div>
+            </article>
+            <article class="team-profile">
+              <h3>Александр</h3>
+              <p class="team-role">Сооснователь / продюсер</p>
+              <p class="team-description">Отвечает за содержание, драматургию, полный производственный цикл и развитие медиа.</p>
+              <div class="team-avatar" aria-label="Место для фотографии Александра">А</div>
+            </article>
+            <article class="team-profile">
+              <h3>Алина</h3>
+              <p class="team-role">Коммуникации / партнёрства</p>
+              <p class="team-description">Связывает проект с будущими героями, рекламодателями и партнёрами.</p>
+              <div class="team-avatar" aria-label="Место для фотографии Алины">А</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <img class="footer-logo" src="assets/america-logo.png" alt="Америка глазами иммигрантов">
       <nav class="footer-links" aria-label="Социальные сети проекта">
         <a href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer">YouTube&nbsp;↗</a>
-        <a href="https://www.instagram.com/rybalko_iliya" target="_blank" rel="noopener noreferrer">Instagram&nbsp;↗</a>
+        <a href="https://www.youtube.com/@Iliya_Rybalko_Shorts" target="_blank" rel="noopener noreferrer">YouTube Shorts&nbsp;↗</a>
+        <a href="https://www.instagram.com/rybalko_iliya/" target="_blank" rel="noopener noreferrer">Instagram Ильи&nbsp;↗</a>
+        <a href="https://www.instagram.com/iliyarybalko/" target="_blank" rel="noopener noreferrer">Instagram выпусков&nbsp;↗</a>
+        <a href="https://www.tiktok.com/@rybalko_ilia" target="_blank" rel="noopener noreferrer">TikTok&nbsp;↗</a>
         <a href="https://t.me/Iliya_rybalko" target="_blank" rel="noopener noreferrer">Telegram&nbsp;↗</a>
       </nav>
-      <p>Америка глазами иммигрантов — истории о жизни и бизнесе в США.</p>
+      <p>Америка глазами иммигрантов — документальное медиа о жизни в США.</p>
     </footer>
   </main>
 
@@ -861,74 +1148,110 @@
   </div>
 
   <script>
-    const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbxduzIZuo9R9rUbKTGgm3sV9f0cvpAeAAOALZ4oCKBSg9ck70PLcRnEjt4ntYbaYRuX7A/exec";
-
-    const states = [
-      ["AL", "Alabama"], ["AK", "Alaska"], ["AZ", "Arizona"], ["AR", "Arkansas"],
-      ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DE", "Delaware"],
-      ["DC", "District of Columbia"], ["FL", "Florida"], ["GA", "Georgia"], ["HI", "Hawaii"],
-      ["ID", "Idaho"], ["IL", "Illinois"], ["IN", "Indiana"], ["IA", "Iowa"],
-      ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], ["ME", "Maine"],
-      ["MD", "Maryland"], ["MA", "Massachusetts"], ["MI", "Michigan"], ["MN", "Minnesota"],
-      ["MS", "Mississippi"], ["MO", "Missouri"], ["MT", "Montana"], ["NE", "Nebraska"],
-      ["NV", "Nevada"], ["NH", "New Hampshire"], ["NJ", "New Jersey"], ["NM", "New Mexico"],
-      ["NY", "New York"], ["NC", "North Carolina"], ["ND", "North Dakota"], ["OH", "Ohio"],
-      ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], ["RI", "Rhode Island"],
-      ["SC", "South Carolina"], ["SD", "South Dakota"], ["TN", "Tennessee"], ["TX", "Texas"],
-      ["UT", "Utah"], ["VT", "Vermont"], ["VA", "Virginia"], ["WA", "Washington"],
-      ["WV", "West Virginia"], ["WI", "Wisconsin"], ["WY", "Wyoming"]
-    ];
-
-    const form = document.querySelector("#applicationForm");
-    const stateSelect = document.querySelector("#state");
-    const result = document.querySelector("#result");
-    const formStatus = document.querySelector("#formStatus");
-    const submitButton = form.querySelector('button[type="submit"]');
-
-    const ATTRIBUTION_KEY = "america-eyes-attribution";
-    const ATTRIBUTION_LIFETIME = 365 * 24 * 60 * 60 * 1000;
-
-    function readAttribution() {
-      const query = new URLSearchParams(window.location.search);
-      const compactRef = (query.get("ref") || "").trim().toLowerCase();
-      const [sourceCode = "", ...campaignParts] = compactRef.split("-").filter(Boolean);
-      const sourceAliases = {
-        yt: "youtube",
-        ig: "instagram",
-        tg: "telegram",
-        fb: "facebook",
-        tt: "tiktok"
-      };
-      const source = query.get("utm_source") || sourceAliases[sourceCode] || sourceCode;
-      const medium = query.get("utm_medium") || (compactRef ? "short_link" : "");
-      const campaign = query.get("utm_campaign") || campaignParts.join("-");
-      const content = query.get("utm_content") || "";
-      const hasNewAttribution = compactRef || source || medium || campaign || content;
-
-      if (hasNewAttribution) {
-        const attribution = {
-          source,
-          medium,
-          campaign: [campaign, content].filter(Boolean).join(" · "),
-          referrer: document.referrer || "",
-          capturedAt: Date.now()
-        };
-        try {
-          localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution));
-        } catch (_) {}
-        return attribution;
-      }
-
-      try {
-        const saved = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || "null");
-        if (saved && Date.now() - saved.capturedAt <= ATTRIBUTION_LIFETIME) return saved;
-        localStorage.removeItem(ATTRIBUTION_KEY);
-      } catch (_) {}
-
-      return { source: "", medium: "", campaign: "", referrer: document.referrer || "" };
+    const currentQuery = window.location.search;
+    for (const link of document.querySelectorAll(".be-hero-link")) {
+      if (currentQuery) link.href = `be-hero/${currentQuery}`;
     }
 
-    const attribution = readAttribution();
+    const storySection = document.querySelector(".story-scroll");
+    const storyStage = document.querySelector(".story-stage");
+    const introHero = document.querySelector(".hero");
+    const episodesSection = document.querySelector("#episodes");
+    const scaleSection = document.querySelector("#project-scale");
+    if (storySection && episodesSection) episodesSection.before(storySection);
+    if (storySection && scaleSection) storySection.after(scaleSection);
+    if (storyStage && introHero) storyStage.prepend(introHero);
+
+    for (const link of document.querySelectorAll('.hero-nav a[href^="#"]')) {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = "auto";
+        target.scrollIntoView({ block: "start" });
+        window.history.pushState(null, "", link.getAttribute("href"));
+        window.requestAnimationFrame(() => {
+          document.documentElement.style.scrollBehavior = previousScrollBehavior;
+        });
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      const revealItems = [...document.querySelectorAll(
+        ".stat, .episode-card, .hero-person, .path-card, .team-profile, .section > .eyebrow, .section > h2, .section > .section-intro"
+      )];
+      revealItems.forEach((item, index) => {
+        item.classList.add("reveal-item");
+        item.style.setProperty("--reveal-delay", `${(index % 4) * 70}ms`);
+      });
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: .12, rootMargin: "0px 0px -5% 0px" });
+      revealItems.forEach(item => revealObserver.observe(item));
+    }
+    const storyPanels = [...document.querySelectorAll("[data-story-panel]")];
+    const storyBackgrounds = [...document.querySelectorAll("[data-story-background]")];
+    const storyProgress = document.querySelector("#storyProgress");
+    const storyCounter = document.querySelector("#storyCounter");
+    const storyVideo = document.querySelector("#storyVideo");
+    const storyVideoStops = [1.4375, 6.5319, 12.9592, 17.4, 21.8391];
+    const storyTextSwitchPoints = [0, .14, .43, .66];
+    let activeStoryIndex = -1;
+    let storyFrameRequested = false;
+
+    storyVideo?.addEventListener("loadedmetadata", () => {
+      storyVideo.pause();
+      storyVideo.currentTime = storyVideoStops[0];
+      requestStoryUpdate();
+    });
+
+    storyVideo?.addEventListener("error", () => {
+      storyVideo.hidden = true;
+    });
+
+    function updateStory() {
+      storyFrameRequested = false;
+      if (!storySection) return;
+
+      const rect = storySection.getBoundingClientRect();
+      const scrollDistance = Math.max(rect.height - window.innerHeight, 1);
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
+      const videoSceneProgress = progress * (storyVideoStops.length - 1);
+      const videoSceneIndex = Math.min(storyVideoStops.length - 2, Math.floor(videoSceneProgress));
+      const progressInsideScene = Math.min(1, videoSceneProgress - videoSceneIndex);
+      const sceneStart = storyVideoStops[videoSceneIndex];
+      const sceneEnd = storyVideoStops[videoSceneIndex + 1];
+      const targetVideoTime = sceneStart + (sceneEnd - sceneStart) * progressInsideScene;
+      let activeIndex = 0;
+      storyTextSwitchPoints.forEach((point, index) => {
+        if (progress >= point) activeIndex = index;
+      });
+
+      storyPanels.forEach((panel, index) => panel.classList.toggle("is-active", index === activeIndex));
+      storyBackgrounds.forEach((background, index) => background.classList.toggle("is-active", index === activeIndex));
+      activeStoryIndex = activeIndex;
+      if (storyVideo?.readyState >= 1 && Math.abs(storyVideo.currentTime - targetVideoTime) > .035) {
+        storyVideo.pause();
+        storyVideo.currentTime = targetVideoTime;
+      }
+      storyProgress.style.width = `${progress * 100}%`;
+      storyCounter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(storyPanels.length).padStart(2, "0")}`;
+    }
+
+    function requestStoryUpdate() {
+      if (storyFrameRequested) return;
+      storyFrameRequested = true;
+      window.requestAnimationFrame(updateStory);
+    }
+
+    window.addEventListener("scroll", requestStoryUpdate, { passive: true });
+    window.addEventListener("resize", requestStoryUpdate);
+    updateStory();
 
     const videoModal = document.querySelector("#videoModal");
     const videoFrame = document.querySelector("#videoFrame");
@@ -937,8 +1260,7 @@
 
     function openVideo(button) {
       lastVideoTrigger = button;
-      const videoId = button.dataset.videoId;
-      videoFrame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      videoFrame.src = `https://www.youtube-nocookie.com/embed/${button.dataset.videoId}?autoplay=1&rel=0`;
       videoModal.hidden = false;
       document.body.style.overflow = "hidden";
       videoClose.focus();
@@ -962,186 +1284,6 @@
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && !videoModal.hidden) closeVideo();
     });
-
-    for (const [code, name] of states) {
-      stateSelect.add(new Option(`${name} (${code})`, code));
-    }
-
-    const branchMap = {
-      profession: document.querySelector("#professionBranch"),
-      business: document.querySelector("#businessBranch")
-    };
-
-    function clearFieldError(field) {
-      field.removeAttribute("aria-invalid");
-      const error = document.querySelector(`#${field.id}Error`);
-      if (error) error.textContent = "";
-    }
-
-    function setFieldError(field, message) {
-      field.setAttribute("aria-invalid", "true");
-      const error = document.querySelector(`#${field.id}Error`);
-      if (error) error.textContent = message;
-    }
-
-    function setCategory(category) {
-      for (const [key, branch] of Object.entries(branchMap)) {
-        const active = key === category;
-        branch.hidden = !active;
-        branch.disabled = !active;
-        if (!active) {
-          for (const field of branch.querySelectorAll("input, textarea, select")) {
-            field.value = "";
-            clearFieldError(field);
-          }
-        }
-      }
-      document.querySelector("#categoryError").textContent = "";
-      updateCounters();
-    }
-
-    form.addEventListener("change", event => {
-      if (event.target.name === "category") setCategory(event.target.value);
-    });
-
-    function updateCounter(field) {
-      const counter = document.querySelector(`[data-counter-for="${field.id}"]`);
-      if (!counter) return;
-      const max = Number(field.maxLength);
-      counter.textContent = `${field.value.length} / ${max}`;
-      counter.classList.toggle("is-near-limit", field.value.length >= max * .85);
-    }
-
-    function updateCounters() {
-      for (const field of form.querySelectorAll("textarea[maxlength]")) updateCounter(field);
-    }
-
-    form.addEventListener("input", event => {
-      clearFieldError(event.target);
-      updateCounter(event.target);
-      formStatus.textContent = "";
-      formStatus.className = "form-status";
-      result.hidden = true;
-    });
-
-    function validateField(field) {
-      if (field.disabled || field.closest("fieldset[disabled]") || field.type === "radio" || field.type === "checkbox") return true;
-      const value = field.value.trim();
-
-      if (field.required && !value) {
-        setFieldError(field, "Заполните это поле.");
-        return false;
-      }
-
-      if (value && field.minLength > 0 && value.length < field.minLength) {
-        setFieldError(field, `Нужно не менее ${field.minLength} символов. Сейчас: ${value.length}.`);
-        return false;
-      }
-
-      if (value && field.maxLength > 0 && value.length > field.maxLength) {
-        setFieldError(field, `Можно использовать не более ${field.maxLength} символов.`);
-        return false;
-      }
-
-      if (value && field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        setFieldError(field, "Проверьте адрес электронной почты.");
-        return false;
-      }
-
-      if (value && field.type === "url") {
-        try {
-          const url = new URL(value);
-          if (!["http:", "https:"].includes(url.protocol)) throw new Error();
-        } catch {
-          setFieldError(field, "Укажите полную ссылку, начинающуюся с https://");
-          return false;
-        }
-      }
-
-      if (field.id === "whatsapp" && value) {
-        const digits = value.replace(/\D/g, "");
-        if (digits.length < 10 || digits.length > 15) {
-          setFieldError(field, "Укажите номер с кодом страны, например +1 555 123 4567.");
-          return false;
-        }
-      }
-
-      clearFieldError(field);
-      return true;
-    }
-
-    function validateForm() {
-      let valid = true;
-
-      const category = form.querySelector('input[name="category"]:checked');
-      document.querySelector("#categoryError").textContent = category ? "" : "Выберите одно направление.";
-      if (!category) valid = false;
-
-      const consent = document.querySelector("#consent");
-      document.querySelector("#consentError").textContent = consent.checked ? "" : "Подтвердите согласие, чтобы продолжить.";
-      if (!consent.checked) valid = false;
-
-      for (const field of form.querySelectorAll("input, textarea, select")) {
-        if (!validateField(field)) valid = false;
-      }
-
-      return valid;
-    }
-
-    function serializeForm() {
-      const data = {};
-      const formData = new FormData(form);
-      for (const [key, value] of formData.entries()) data[key] = typeof value === "string" ? value.trim() : value;
-      data.consent = document.querySelector("#consent").checked;
-      data.utm_source = attribution.source;
-      data.utm_medium = attribution.medium;
-      data.utm_campaign = attribution.campaign;
-      data.referrer = attribution.referrer;
-      return data;
-    }
-
-    form.addEventListener("submit", async event => {
-      event.preventDefault();
-      result.hidden = true;
-
-      if (!validateForm()) {
-        formStatus.textContent = "Проверьте выделенные поля.";
-        formStatus.className = "form-status error-status";
-        const firstError = form.querySelector('[aria-invalid="true"]') || form.querySelector(".error:not(:empty)");
-        firstError?.scrollIntoView({ behavior: "smooth", block: "center" });
-        return;
-      }
-
-      const originalButtonText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = "Отправляем…";
-      formStatus.textContent = "Отправляем заявку…";
-      formStatus.className = "form-status";
-
-      try {
-        await fetch(SUBMISSION_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          credentials: "omit",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(serializeForm())
-        });
-
-        form.reset();
-        setCategory("");
-        formStatus.textContent = "";
-        result.hidden = false;
-        result.scrollIntoView({ behavior: "smooth", block: "start" });
-      } catch (error) {
-        formStatus.textContent = "Не удалось отправить заявку. Проверьте интернет-соединение и попробуйте ещё раз.";
-        formStatus.className = "form-status error-status";
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-    });
-
-    updateCounters();
   </script>
 </body>
 </html>
