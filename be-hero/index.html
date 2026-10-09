@@ -61,6 +61,74 @@
       margin: 48px auto 80px;
     }
 
+    .site-bar {
+      display: flex;
+      min-height: 58px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 2px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, .16);
+    }
+
+    .site-bar a {
+      color: rgba(255, 255, 255, .72);
+      font-size: 13px;
+      font-weight: 720;
+      text-decoration: none;
+      transition: color .18s, border-color .18s, background .18s;
+    }
+
+    .site-bar a:hover { color: var(--accent); }
+
+    .site-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .site-home::before {
+      content: "←";
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .site-socials {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .site-socials a {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 50%;
+      transition: color .18s, border-color .18s, background .18s, transform .18s;
+    }
+
+    .site-socials a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(230, 185, 112, .72);
+      background: rgba(230, 185, 112, .1);
+    }
+
+    .site-socials svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .site-socials .social-instagram svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
     header {
       max-width: none;
       padding: 12px 0 10px;
@@ -622,6 +690,15 @@
 
     @media (max-width: 620px) {
       main { width: min(100% - 20px, 720px); margin-top: 24px; }
+      .site-bar {
+        min-height: 48px;
+        gap: 12px;
+        padding-bottom: 10px;
+      }
+      .site-bar a { font-size: 11px; }
+      .site-home::before { display: none; }
+      .site-socials { gap: 6px; }
+      .site-socials a { width: 31px; height: 31px; }
       header { padding-top: 24px; }
       .grid, .choice-grid, .overview, .episode-grid { grid-template-columns: 1fr; }
       .episodes { padding: 8px 0 26px; }
@@ -636,6 +713,24 @@
 </head>
 <body>
   <main>
+    <nav class="site-bar" aria-label="Навигация по сайту">
+      <a class="site-home preserve-query" href="../">Главная</a>
+      <div class="site-socials" aria-label="Социальные сети">
+        <a class="social-instagram" href="https://www.instagram.com/rybalko_iliya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"/><circle cx="12" cy="12" r="4.15"/><circle cx="17.45" cy="6.65" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://t.me/Iliya_rybalko" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 3.3 18.5 20c-.2 1.2-.9 1.5-1.9.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.2 14 1.5 12.5c-1-.3-1-1 .2-1.5L20 3.9c.9-.3 1.7.2 1.6-.6Z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@rybalko_ilia" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 2c.3 2.6 1.8 4.2 4.4 4.4v3.1a8.8 8.8 0 0 1-4.4-1.1v6.2a6.3 6.3 0 1 1-5.4-6.2v3.2a3.2 3.2 0 1 0 2.2 3V2h3.2Z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>
+        </a>
+      </div>
+    </nav>
+
     <header>
       <a href="../" aria-label="На главную New Locals">
         <img class="brand-logo" src="../assets/america-logo.png" alt="Америка глазами иммигрантов">
@@ -932,6 +1027,14 @@
     }
 
     const attribution = readAttribution();
+
+    if (window.location.search) {
+      for (const link of document.querySelectorAll(".preserve-query")) {
+        const destination = new URL(link.getAttribute("href"), window.location.href);
+        destination.search = window.location.search;
+        link.href = destination.href;
+      }
+    }
 
     const videoModal = document.querySelector("#videoModal");
     const videoFrame = document.querySelector("#videoFrame");
