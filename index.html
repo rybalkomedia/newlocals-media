@@ -595,6 +595,42 @@
     .path-card p { max-width: 470px; margin: 18px 0 28px; color: var(--muted); font-size: 17px; }
     .path-card .button { margin-top: auto; }
 
+    .project-manifesto {
+      padding-top: clamp(56px, 8vw, 104px);
+      padding-bottom: clamp(62px, 9vw, 116px);
+      text-align: center;
+    }
+
+    .manifesto-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .project-manifesto h2 {
+      max-width: 980px;
+      margin: 0 auto;
+      font-size: clamp(44px, 7vw, 90px);
+      font-weight: 760;
+      line-height: .94;
+      letter-spacing: -.06em;
+    }
+
+    .project-manifesto h2 em {
+      color: var(--accent);
+      font-family: var(--display);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -.04em;
+    }
+
+    .manifesto-copy {
+      max-width: 770px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: clamp(17px, 1.7vw, 21px);
+      line-height: 1.55;
+    }
+
     .team-layout {
       margin-top: 28px;
     }
@@ -869,6 +905,9 @@
       .stats-section { padding: 34px 0 44px; }
       #heroes { padding: 58px 0 40px; }
       #participation { padding: 28px 0 42px; }
+      .project-manifesto { padding-top: 50px; padding-bottom: 58px; }
+      .project-manifesto h2 { font-size: clamp(38px, 11vw, 58px); }
+      .manifesto-copy { margin-top: 22px; font-size: 16px; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stat { min-height: 135px; padding: 21px 17px; }
       .episode-grid { display: none; }
@@ -943,6 +982,9 @@
           </a>
           <a href="https://www.tiktok.com/@rybalko_ilia" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 2c.3 2.6 1.8 4.2 4.4 4.4v3.1a8.8 8.8 0 0 1-4.4-1.1v6.2a6.3 6.3 0 1 1-5.4-6.2v3.2a3.2 3.2 0 1 0 2.2 3V2h3.2Z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@Iliya_Rybalko" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>
           </a>
         </nav>
       </div>
@@ -1115,6 +1157,14 @@
       </div>
     </section>
 
+    <section class="section project-manifesto" aria-labelledby="manifestoTitle">
+      <div class="manifesto-inner">
+        <p class="eyebrow">О проекте</p>
+        <h2 id="manifestoTitle">Америка становится понятнее,<br>когда её показывают <em>через людей</em>.</h2>
+        <p class="manifesto-copy">Мы собираем опыт тех, кто переехал, начал сначала и строит здесь свою жизнь. Каждая история становится отдельным фильмом, а вместе они складываются в живую картину иммиграции, профессий и бизнеса в США.</p>
+      </div>
+    </section>
+
     <section class="section team-section" aria-labelledby="teamTitle">
       <div class="team-shell">
         <h2 class="eyebrow team-title" id="teamTitle">Команда проекта</h2>
@@ -1197,7 +1247,7 @@
 
     if ("IntersectionObserver" in window) {
       const revealItems = [...document.querySelectorAll(
-        ".stat, .episode-card, .hero-person, .path-card, .team-profile, .section > .eyebrow, .section > h2, .section > .section-intro"
+        ".stat, .episode-card, .hero-person, .path-card, .team-profile, .section > .eyebrow, .section > h2, .section > .section-intro, .project-manifesto .manifesto-inner > *"
       )];
       revealItems.forEach((item, index) => {
         item.classList.add("reveal-item");
