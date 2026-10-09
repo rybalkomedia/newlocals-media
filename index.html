@@ -3,8 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Америка глазами иммигрантов — медиа о людях, которые живут, работают и строят своё дело в США.">
+  <meta name="description" content="Америка глазами иммигрантов — русскоязычное медиа о жизни, работе, бизнесе, переезде и адаптации в США через истории реальных людей.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://rybalkomedia.github.io/newlocals-media/">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Америка глазами иммигрантов">
+  <meta property="og:description" content="Русскоязычное медиа о жизни, профессиях, бизнесе и иммиграции в США через истории реальных людей.">
+  <meta property="og:url" content="https://rybalkomedia.github.io/newlocals-media/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Америка глазами иммигрантов">
+  <meta name="twitter:description" content="Медиа о жизни, профессиях, бизнесе и иммиграции в США через истории реальных людей.">
   <title>Америка глазами иммигрантов — медиа о жизни и бизнесе в США</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://rybalkomedia.github.io/newlocals-media/#organization",
+          "name": "Америка глазами иммигрантов",
+          "alternateName": "New Locals Media",
+          "url": "https://rybalkomedia.github.io/newlocals-media/",
+          "logo": "https://rybalkomedia.github.io/newlocals-media/assets/america-logo.png",
+          "description": "Русскоязычное медиа о жизни, работе, бизнесе, переезде и адаптации в США через истории реальных людей.",
+          "sameAs": [
+            "https://www.youtube.com/@Iliya_Rybalko",
+            "https://www.instagram.com/rybalko_iliya/",
+            "https://www.tiktok.com/@rybalko_ilia",
+            "https://t.me/Iliya_rybalko"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rybalkomedia.github.io/newlocals-media/#website",
+          "url": "https://rybalkomedia.github.io/newlocals-media/",
+          "name": "Америка глазами иммигрантов",
+          "inLanguage": "ru",
+          "publisher": {
+            "@id": "https://rybalkomedia.github.io/newlocals-media/#organization"
+          }
+        }
+      ]
+    }
+  </script>
   <style>
     :root {
       color-scheme: dark;
@@ -561,6 +603,51 @@
     .hero-total .hero-portrait::after { display: none; }
     .hero-total .hero-name { color: var(--muted); font-weight: 580; }
 
+    .story-stills {
+      padding: 4px 0 52px;
+    }
+
+    .stills-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: clamp(200px, 24vw, 290px);
+      gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: auto;
+      scrollbar-width: none;
+      overscroll-behavior: contain;
+    }
+
+    .stills-rail::-webkit-scrollbar { display: none; }
+
+    .still-card {
+      position: relative;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .04);
+      color: #fff;
+      font: inherit;
+      text-align: left;
+      cursor: default;
+    }
+
+    .still-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.01);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
     .paths {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -596,55 +683,60 @@
     .path-card .button { margin-top: auto; }
 
     .project-manifesto {
-      padding-top: clamp(56px, 8vw, 104px);
-      padding-bottom: clamp(62px, 9vw, 116px);
+      padding-top: clamp(48px, 6vw, 76px);
+      padding-bottom: clamp(50px, 7vw, 84px);
+      border-top: 1px solid var(--line);
       text-align: center;
     }
 
     .manifesto-inner {
-      max-width: 1040px;
+      max-width: 940px;
       margin: 0 auto;
     }
 
-    .project-manifesto h2 {
-      max-width: 980px;
-      margin: 0 auto;
-      font-size: clamp(44px, 7vw, 90px);
-      font-weight: 760;
-      line-height: .94;
-      letter-spacing: -.06em;
-    }
+    .project-manifesto .eyebrow { margin-bottom: 24px; }
 
-    .project-manifesto h2 em {
-      color: var(--accent);
-      font-family: var(--display);
-      font-weight: 400;
-      font-style: italic;
-      letter-spacing: -.04em;
+    .project-manifesto .story-stills {
+      margin-top: 34px;
+      padding: 0;
+      text-align: left;
     }
 
     .manifesto-copy {
-      max-width: 770px;
-      margin: 30px auto 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .manifesto-copy p {
+      margin: 0;
       color: var(--muted);
-      font-size: clamp(17px, 1.7vw, 21px);
-      line-height: 1.55;
+      font-size: clamp(17px, 1.55vw, 20px);
+      line-height: 1.72;
+    }
+
+    .manifesto-copy strong {
+      color: #eee7dc;
+      font-weight: 720;
+    }
+
+    .manifesto-copy .manifesto-mission {
+      margin-top: 18px;
     }
 
     .team-layout {
       margin-top: 28px;
     }
 
-    #participation { padding: 38px 0 54px; border-top: 0; }
+    #participation { padding: 38px 0 32px; border-top: 0; }
+
+    #participationTitle {
+      font-size: clamp(30px, 3.7vw, 46px);
+      text-align: center;
+    }
     .team-section { padding-top: 22px; padding-bottom: 76px; border-top: 0; }
 
     .team-shell {
-      padding: clamp(32px, 4.5vw, 54px) clamp(18px, 4vw, 48px) clamp(36px, 5vw, 60px);
-      border: 1px solid rgba(230, 185, 112, .28);
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(230, 185, 112, .09), transparent 38%),
-        rgba(255, 255, 255, .025);
+      padding: 0;
     }
 
     .team-title {
@@ -904,13 +996,28 @@
       .story-hint { font-size: 8px; letter-spacing: .1em; }
       .stats-section { padding: 34px 0 44px; }
       #heroes { padding: 58px 0 40px; }
-      #participation { padding: 28px 0 42px; }
-      .project-manifesto { padding-top: 50px; padding-bottom: 58px; }
-      .project-manifesto h2 { font-size: clamp(38px, 11vw, 58px); }
-      .manifesto-copy { margin-top: 22px; font-size: 16px; }
+      .story-stills { padding: 2px 0 40px; }
+      .stills-rail { grid-auto-columns: min(76vw, 280px); }
+      #participation { padding: 28px 0 26px; }
+      .project-manifesto { padding-top: 44px; padding-bottom: 58px; }
+      .manifesto-copy p { font-size: 16px; line-height: 1.62; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stat { min-height: 135px; padding: 21px 17px; }
-      .episode-grid { display: none; }
+      .episode-grid {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: min(82vw, 330px);
+        gap: 12px;
+        margin-right: -11px;
+        padding-right: 22px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: none;
+      }
+      .episode-grid::-webkit-scrollbar { display: none; }
+      .episode-card { scroll-snap-align: start; }
+      .episode-card:hover { transform: none; }
       .heroes-strip {
         grid-template-columns: repeat(9, 104px);
         gap: 18px;
@@ -929,9 +1036,9 @@
 
     @media (max-width: 520px) {
       .hero-nav a:first-child { display: none; }
-      #participation { padding-bottom: 42px; }
+      #participation { padding-bottom: 26px; }
       .team-section { padding-top: 16px; padding-bottom: 52px; }
-      .team-shell { padding: 26px 10px 30px; border-radius: 18px; }
+      .team-shell { padding: 0; }
       #teamTitle { font-size: 12px; }
       .team-intro { max-width: 330px; margin-top: 12px; font-size: 13px; line-height: 1.5; }
       .team-layout { margin-top: 24px; }
@@ -1044,6 +1151,39 @@
       </div>
     </section>
 
+    <section class="section project-manifesto" aria-labelledby="manifestoTitle">
+      <div class="manifesto-inner">
+        <h2 class="eyebrow" id="manifestoTitle">О проекте</h2>
+        <div class="manifesto-copy">
+          <p><strong>«Америка глазами иммигрантов»</strong> — русскоязычное медиа об иммиграции и жизни в США: работе, профессиях, бизнесе и адаптации на новом месте. Мы снимаем героев в их среде и показываем их путь — от первых сложностей до того, как они выстраивают новую жизнь.</p>
+          <p class="manifesto-mission"><strong>Наша миссия</strong> — показывать Америку без идеализации и предубеждений, а иммиграцию — без упрощений: с её возможностями, трудностями и реальным опытом адаптации. Через истории людей мы помогаем зрителю лучше понимать страну и принимать собственные решения осознаннее.</p>
+        </div>
+      </div>
+
+      <div class="story-stills" id="stills" aria-label="Кадры из выпусков">
+        <div class="stills-rail" id="stillsRail">
+          <figure class="still-card">
+            <img src="https://i.ytimg.com/vi/dj2gjyJxyYs/maxresdefault.jpg" alt="Кадр из выпуска о работе полиции США" loading="lazy">
+          </figure>
+          <figure class="still-card">
+            <img src="https://i.ytimg.com/vi/dIQ4jvRhXPM/maxresdefault.jpg" alt="Кадр из выпуска об армии США" loading="lazy">
+          </figure>
+          <figure class="still-card">
+            <img src="https://i.ytimg.com/vi/B3I19OY3ZfA/maxresdefault.jpg" alt="Кадр из выпуска о жизни на лодке в США" loading="lazy">
+          </figure>
+          <figure class="still-card">
+            <img src="https://i.ytimg.com/vi/niZFxjP5GLc/maxresdefault.jpg" alt="Кадр из выпуска о дальнобойщике в США" loading="lazy">
+          </figure>
+          <figure class="still-card">
+            <img src="https://i.ytimg.com/vi/pGV8R9EzU_E/maxresdefault.jpg" alt="Кадр из выпуска о бизнесе в США" loading="lazy">
+          </figure>
+          <figure class="still-card">
+            <img src="https://i.ytimg.com/vi/Vd0ScTl6X94/maxresdefault.jpg" alt="Кадр из выпуска о жизни на Аляске" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="story-scroll" id="about" aria-label="О проекте">
       <div class="story-stage">
         <div class="story-visual">
@@ -1094,7 +1234,7 @@
         <div class="stat"><strong>150 тыс.+</strong><span>подписчиков на наших площадках</span></div>
         <div class="stat"><strong>14 млн+</strong><span>просмотров полноформатных выпусков</span></div>
         <div class="stat"><strong>80+</strong><span>больших историй и выпусков</span></div>
-        <div class="stat"><strong>50–60 мин.</strong><span>средняя длительность большого выпуска</span></div>
+        <div class="stat"><strong>3 млн+</strong><span>часов просмотра полноформатных выпусков</span></div>
       </div>
     </section>
 
@@ -1142,7 +1282,7 @@
     </section>
 
     <section class="section" id="participation" aria-labelledby="participationTitle">
-      <h2 id="participationTitle">Стать частью проекта</h2>
+      <h2 id="participationTitle">Стать частью истории</h2>
       <div class="paths">
         <article class="path-card">
           <h3>Рассказать свою историю</h3>
@@ -1150,22 +1290,14 @@
           <a class="button button-primary be-hero-link" href="be-hero/">Стать героем</a>
         </article>
         <article class="path-card">
-          <h3>Предложить сотрудничество</h3>
+          <h3>Сотрудничество</h3>
           <p>Для брендов и экспертов: партнёрство с медиа, поддержка выпусков, рекламные интеграции и участие в тематических историях.</p>
           <span class="button button-secondary" aria-disabled="true">Страница сотрудничества — скоро</span>
         </article>
       </div>
     </section>
 
-    <section class="section project-manifesto" aria-labelledby="manifestoTitle">
-      <div class="manifesto-inner">
-        <p class="eyebrow">О проекте</p>
-        <h2 id="manifestoTitle">Америка становится понятнее,<br>когда её показывают <em>через людей</em>.</h2>
-        <p class="manifesto-copy">Мы собираем опыт тех, кто переехал, начал сначала и строит здесь свою жизнь. Каждая история становится отдельным фильмом, а вместе они складываются в живую картину иммиграции, профессий и бизнеса в США.</p>
-      </div>
-    </section>
-
-    <section class="section team-section" aria-labelledby="teamTitle">
+    <section class="section team-section" aria-labelledby="teamTitle" hidden>
       <div class="team-shell">
         <h2 class="eyebrow team-title" id="teamTitle">Команда проекта</h2>
         <p class="team-intro">Люди, которые отвечают за героев, содержание и развитие проекта.</p>
@@ -1247,7 +1379,7 @@
 
     if ("IntersectionObserver" in window) {
       const revealItems = [...document.querySelectorAll(
-        ".stat, .episode-card, .hero-person, .path-card, .team-profile, .section > .eyebrow, .section > h2, .section > .section-intro, .project-manifesto .manifesto-inner > *"
+        ".stat, .episode-card, .hero-person, .still-card, .path-card, .team-profile, .section > .eyebrow, .section > h2, .section > .section-intro, .project-manifesto .manifesto-inner > *"
       )];
       revealItems.forEach((item, index) => {
         item.classList.add("reveal-item");
@@ -1344,6 +1476,20 @@
     for (const card of document.querySelectorAll("[data-video-id]")) {
       card.addEventListener("click", () => openVideo(card));
     }
+
+    const stillsRail = document.querySelector("#stillsRail");
+    stillsRail?.addEventListener("wheel", event => {
+      const maxScrollLeft = stillsRail.scrollWidth - stillsRail.clientWidth;
+      if (maxScrollLeft <= 0) return;
+
+      const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      const atStart = stillsRail.scrollLeft <= 1;
+      const atEnd = stillsRail.scrollLeft >= maxScrollLeft - 1;
+      if ((movement < 0 && atStart) || (movement > 0 && atEnd)) return;
+
+      event.preventDefault();
+      stillsRail.scrollLeft += movement * 1.35;
+    }, { passive: false });
 
     videoClose.addEventListener("click", closeVideo);
     videoModal.addEventListener("click", event => {
