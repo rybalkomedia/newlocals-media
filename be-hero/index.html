@@ -65,7 +65,7 @@
       display: flex;
       min-height: 58px;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 24px;
       padding: 0 2px 14px;
       border-bottom: 1px solid rgba(255, 255, 255, .16);
@@ -714,7 +714,6 @@
 <body>
   <main>
     <nav class="site-bar" aria-label="Навигация по сайту">
-      <a class="site-home preserve-query" href="../">Главная</a>
       <div class="site-socials" aria-label="Социальные сети">
         <a class="social-instagram" href="https://www.instagram.com/rybalko_iliya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"/><circle cx="12" cy="12" r="4.15"/><circle cx="17.45" cy="6.65" r="1" fill="currentColor" stroke="none"/></svg>
@@ -732,7 +731,7 @@
     </nav>
 
     <header>
-      <a href="../" aria-label="На главную New Locals">
+      <a class="preserve-query" href="./" aria-label="В начало страницы Be Hero">
         <img class="brand-logo" src="../assets/america-logo.png" alt="Америка глазами иммигрантов">
       </a>
       <p class="intro">Медиа о людях, которые живут, работают и строят своё дело в США. Мы показываем профессии, предпринимательство и реальную жизнь изнутри — через личные истории наших героев.</p>
